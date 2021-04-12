@@ -1,0 +1,16 @@
+D:\documenten\Programmeren\C#\Git\klassen\Nummers\bin\Debug\net5.0\Nummers.exe
+D:\documenten\Programmeren\C#\Git\klassen\Nummers\bin\Debug\net5.0\Nummers.deps.json
+D:\documenten\Programmeren\C#\Git\klassen\Nummers\bin\Debug\net5.0\Nummers.runtimeconfig.json
+D:\documenten\Programmeren\C#\Git\klassen\Nummers\bin\Debug\net5.0\Nummers.runtimeconfig.dev.json
+D:\documenten\Programmeren\C#\Git\klassen\Nummers\bin\Debug\net5.0\Nummers.dll
+D:\documenten\Programmeren\C#\Git\klassen\Nummers\bin\Debug\net5.0\ref\Nummers.dll
+D:\documenten\Programmeren\C#\Git\klassen\Nummers\bin\Debug\net5.0\Nummers.pdb
+D:\documenten\Programmeren\C#\Git\klassen\Nummers\obj\Debug\net5.0\Nummers.csprojAssemblyReference.cache
+D:\documenten\Programmeren\C#\Git\klassen\Nummers\obj\Debug\net5.0\Nummers.GeneratedMSBuildEditorConfig.editorconfig
+D:\documenten\Programmeren\C#\Git\klassen\Nummers\obj\Debug\net5.0\Nummers.AssemblyInfoInputs.cache
+D:\documenten\Programmeren\C#\Git\klassen\Nummers\obj\Debug\net5.0\Nummers.AssemblyInfo.cs
+D:\documenten\Programmeren\C#\Git\klassen\Nummers\obj\Debug\net5.0\Nummers.csproj.CoreCompileInputs.cache
+D:\documenten\Programmeren\C#\Git\klassen\Nummers\obj\Debug\net5.0\Nummers.dll
+D:\documenten\Programmeren\C#\Git\klassen\Nummers\obj\Debug\net5.0\ref\Nummers.dll
+D:\documenten\Programmeren\C#\Git\klassen\Nummers\obj\Debug\net5.0\Nummers.pdb
+D:\documenten\Programmeren\C#\Git\klassen\Nummers\obj\Debug\net5.0\Nummers.genruntimeconfig.cache

@@ -1,0 +1,16 @@
+D:\documenten\Programmeren\C#\Git\klassen\RapportModule\bin\Debug\net5.0\RapportModule.exe
+D:\documenten\Programmeren\C#\Git\klassen\RapportModule\bin\Debug\net5.0\RapportModule.deps.json
+D:\documenten\Programmeren\C#\Git\klassen\RapportModule\bin\Debug\net5.0\RapportModule.runtimeconfig.json
+D:\documenten\Programmeren\C#\Git\klassen\RapportModule\bin\Debug\net5.0\RapportModule.runtimeconfig.dev.json
+D:\documenten\Programmeren\C#\Git\klassen\RapportModule\bin\Debug\net5.0\RapportModule.dll
+D:\documenten\Programmeren\C#\Git\klassen\RapportModule\bin\Debug\net5.0\ref\RapportModule.dll
+D:\documenten\Programmeren\C#\Git\klassen\RapportModule\bin\Debug\net5.0\RapportModule.pdb
+D:\documenten\Programmeren\C#\Git\klassen\RapportModule\obj\Debug\net5.0\RapportModule.csprojAssemblyReference.cache
+D:\documenten\Programmeren\C#\Git\klassen\RapportModule\obj\Debug\net5.0\RapportModule.GeneratedMSBuildEditorConfig.editorconfig
+D:\documenten\Programmeren\C#\Git\klassen\RapportModule\obj\Debug\net5.0\RapportModule.AssemblyInfoInputs.cache
+D:\documenten\Programmeren\C#\Git\klassen\RapportModule\obj\Debug\net5.0\RapportModule.AssemblyInfo.cs
+D:\documenten\Programmeren\C#\Git\klassen\RapportModule\obj\Debug\net5.0\RapportModule.csproj.CoreCompileInputs.cache
+D:\documenten\Programmeren\C#\Git\klassen\RapportModule\obj\Debug\net5.0\RapportModule.dll
+D:\documenten\Programmeren\C#\Git\klassen\RapportModule\obj\Debug\net5.0\ref\RapportModule.dll
+D:\documenten\Programmeren\C#\Git\klassen\RapportModule\obj\Debug\net5.0\RapportModule.pdb
+D:\documenten\Programmeren\C#\Git\klassen\RapportModule\obj\Debug\net5.0\RapportModule.genruntimeconfig.cache
