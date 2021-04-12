@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RapportModule", "RapportMod
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nummers", "Nummers\Nummers.csproj", "{ED93CF5D-DF1C-4C25-A6E7-98545DBD30C6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentKlasse", "StudentKlasse\StudentKlasse.csproj", "{459E7558-2B57-4E75-8442-ACCF87E4C590}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{ED93CF5D-DF1C-4C25-A6E7-98545DBD30C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED93CF5D-DF1C-4C25-A6E7-98545DBD30C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED93CF5D-DF1C-4C25-A6E7-98545DBD30C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{459E7558-2B57-4E75-8442-ACCF87E4C590}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{459E7558-2B57-4E75-8442-ACCF87E4C590}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{459E7558-2B57-4E75-8442-ACCF87E4C590}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{459E7558-2B57-4E75-8442-ACCF87E4C590}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

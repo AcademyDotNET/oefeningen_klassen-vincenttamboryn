@@ -1,0 +1,16 @@
+D:\documenten\Programmeren\C#\Git\klassen\StudentKlasse\bin\Debug\net5.0\StudentKlasse.exe
+D:\documenten\Programmeren\C#\Git\klassen\StudentKlasse\bin\Debug\net5.0\StudentKlasse.deps.json
+D:\documenten\Programmeren\C#\Git\klassen\StudentKlasse\bin\Debug\net5.0\StudentKlasse.runtimeconfig.json
+D:\documenten\Programmeren\C#\Git\klassen\StudentKlasse\bin\Debug\net5.0\StudentKlasse.runtimeconfig.dev.json
+D:\documenten\Programmeren\C#\Git\klassen\StudentKlasse\bin\Debug\net5.0\StudentKlasse.dll
+D:\documenten\Programmeren\C#\Git\klassen\StudentKlasse\bin\Debug\net5.0\ref\StudentKlasse.dll
+D:\documenten\Programmeren\C#\Git\klassen\StudentKlasse\bin\Debug\net5.0\StudentKlasse.pdb
+D:\documenten\Programmeren\C#\Git\klassen\StudentKlasse\obj\Debug\net5.0\StudentKlasse.csprojAssemblyReference.cache
+D:\documenten\Programmeren\C#\Git\klassen\StudentKlasse\obj\Debug\net5.0\StudentKlasse.GeneratedMSBuildEditorConfig.editorconfig
+D:\documenten\Programmeren\C#\Git\klassen\StudentKlasse\obj\Debug\net5.0\StudentKlasse.AssemblyInfoInputs.cache
+D:\documenten\Programmeren\C#\Git\klassen\StudentKlasse\obj\Debug\net5.0\StudentKlasse.AssemblyInfo.cs
+D:\documenten\Programmeren\C#\Git\klassen\StudentKlasse\obj\Debug\net5.0\StudentKlasse.csproj.CoreCompileInputs.cache
+D:\documenten\Programmeren\C#\Git\klassen\StudentKlasse\obj\Debug\net5.0\StudentKlasse.dll
+D:\documenten\Programmeren\C#\Git\klassen\StudentKlasse\obj\Debug\net5.0\ref\StudentKlasse.dll
+D:\documenten\Programmeren\C#\Git\klassen\StudentKlasse\obj\Debug\net5.0\StudentKlasse.pdb
+D:\documenten\Programmeren\C#\Git\klassen\StudentKlasse\obj\Debug\net5.0\StudentKlasse.genruntimeconfig.cache
