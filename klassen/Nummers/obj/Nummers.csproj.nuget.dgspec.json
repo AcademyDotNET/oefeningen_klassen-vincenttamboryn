@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\documenten\\Programmeren\\C#\\Github oefeningen\\klassen\\Nummers\\Nummers.csproj": {}
+    "C:\\Users\\vince\\source\\repos\\AcademyDotNET\\oefeningen_klassen-vincenttamboryn\\klassen\\Nummers\\Nummers.csproj": {}
   },
   "projects": {
-    "D:\\documenten\\Programmeren\\C#\\Github oefeningen\\klassen\\Nummers\\Nummers.csproj": {
+    "C:\\Users\\vince\\source\\repos\\AcademyDotNET\\oefeningen_klassen-vincenttamboryn\\klassen\\Nummers\\Nummers.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\documenten\\Programmeren\\C#\\Github oefeningen\\klassen\\Nummers\\Nummers.csproj",
+        "projectUniqueName": "C:\\Users\\vince\\source\\repos\\AcademyDotNET\\oefeningen_klassen-vincenttamboryn\\klassen\\Nummers\\Nummers.csproj",
         "projectName": "Nummers",
-        "projectPath": "D:\\documenten\\Programmeren\\C#\\Github oefeningen\\klassen\\Nummers\\Nummers.csproj",
+        "projectPath": "C:\\Users\\vince\\source\\repos\\AcademyDotNET\\oefeningen_klassen-vincenttamboryn\\klassen\\Nummers\\Nummers.csproj",
         "packagesPath": "C:\\Users\\vince\\.nuget\\packages\\",
-        "outputPath": "D:\\documenten\\Programmeren\\C#\\Github oefeningen\\klassen\\Nummers\\obj\\",
+        "outputPath": "C:\\Users\\vince\\source\\repos\\AcademyDotNET\\oefeningen_klassen-vincenttamboryn\\klassen\\Nummers\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\vince\\AppData\\Roaming\\NuGet\\NuGet.Config",
