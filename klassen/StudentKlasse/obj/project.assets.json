@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\vince\\source\\repos\\AcademyDotNET\\oefeningen_klassen-vincenttamboryn\\klassen\\StudentKlasse\\StudentKlasse.csproj",
+      "projectUniqueName": "D:\\documenten\\Programmeren\\C#\\Github oefeningen\\klassen\\StudentKlasse\\StudentKlasse.csproj",
       "projectName": "StudentKlasse",
-      "projectPath": "C:\\Users\\vince\\source\\repos\\AcademyDotNET\\oefeningen_klassen-vincenttamboryn\\klassen\\StudentKlasse\\StudentKlasse.csproj",
+      "projectPath": "D:\\documenten\\Programmeren\\C#\\Github oefeningen\\klassen\\StudentKlasse\\StudentKlasse.csproj",
       "packagesPath": "C:\\Users\\vince\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\vince\\source\\repos\\AcademyDotNET\\oefeningen_klassen-vincenttamboryn\\klassen\\StudentKlasse\\obj\\",
+      "outputPath": "D:\\documenten\\Programmeren\\C#\\Github oefeningen\\klassen\\StudentKlasse\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\vince\\AppData\\Roaming\\NuGet\\NuGet.Config",

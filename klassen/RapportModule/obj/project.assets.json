@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\vince\\source\\repos\\AcademyDotNET\\oefeningen_klassen-vincenttamboryn\\klassen\\RapportModule\\RapportModule.csproj",
+      "projectUniqueName": "D:\\documenten\\Programmeren\\C#\\Github oefeningen\\klassen\\RapportModule\\RapportModule.csproj",
       "projectName": "RapportModule",
-      "projectPath": "C:\\Users\\vince\\source\\repos\\AcademyDotNET\\oefeningen_klassen-vincenttamboryn\\klassen\\RapportModule\\RapportModule.csproj",
+      "projectPath": "D:\\documenten\\Programmeren\\C#\\Github oefeningen\\klassen\\RapportModule\\RapportModule.csproj",
       "packagesPath": "C:\\Users\\vince\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\vince\\source\\repos\\AcademyDotNET\\oefeningen_klassen-vincenttamboryn\\klassen\\RapportModule\\obj\\",
+      "outputPath": "D:\\documenten\\Programmeren\\C#\\Github oefeningen\\klassen\\RapportModule\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\vince\\AppData\\Roaming\\NuGet\\NuGet.Config",
