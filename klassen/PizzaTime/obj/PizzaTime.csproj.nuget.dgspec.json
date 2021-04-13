@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\vince\\source\\repos\\AcademyDotNET\\oefeningen_klassen-vincenttamboryn\\klassen\\StudentKlasse\\StudentKlasse.csproj": {}
+    "C:\\Users\\vince\\source\\repos\\AcademyDotNET\\oefeningen_klassen-vincenttamboryn\\klassen\\PizzaTime\\PizzaTime.csproj": {}
   },
   "projects": {
-    "C:\\Users\\vince\\source\\repos\\AcademyDotNET\\oefeningen_klassen-vincenttamboryn\\klassen\\StudentKlasse\\StudentKlasse.csproj": {
+    "C:\\Users\\vince\\source\\repos\\AcademyDotNET\\oefeningen_klassen-vincenttamboryn\\klassen\\PizzaTime\\PizzaTime.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\vince\\source\\repos\\AcademyDotNET\\oefeningen_klassen-vincenttamboryn\\klassen\\StudentKlasse\\StudentKlasse.csproj",
-        "projectName": "StudentKlasse",
-        "projectPath": "C:\\Users\\vince\\source\\repos\\AcademyDotNET\\oefeningen_klassen-vincenttamboryn\\klassen\\StudentKlasse\\StudentKlasse.csproj",
+        "projectUniqueName": "C:\\Users\\vince\\source\\repos\\AcademyDotNET\\oefeningen_klassen-vincenttamboryn\\klassen\\PizzaTime\\PizzaTime.csproj",
+        "projectName": "PizzaTime",
+        "projectPath": "C:\\Users\\vince\\source\\repos\\AcademyDotNET\\oefeningen_klassen-vincenttamboryn\\klassen\\PizzaTime\\PizzaTime.csproj",
         "packagesPath": "C:\\Users\\vince\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\vince\\source\\repos\\AcademyDotNET\\oefeningen_klassen-vincenttamboryn\\klassen\\StudentKlasse\\obj\\",
+        "outputPath": "C:\\Users\\vince\\source\\repos\\AcademyDotNET\\oefeningen_klassen-vincenttamboryn\\klassen\\PizzaTime\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\vince\\AppData\\Roaming\\NuGet\\NuGet.Config",
