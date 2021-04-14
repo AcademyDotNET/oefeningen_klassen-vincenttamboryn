@@ -17,6 +17,9 @@ namespace BankManager
             rekening2.WithdrawFunds(200);
             rekening2.GetBalance();
 
+            rekening1.ChangeState(AccountState.Blocked);
+            rekening1.WithdrawFunds(100);
+
         }
     }
 }

@@ -21,14 +21,7 @@ namespace BankManager
         }
         public void ChangeState(AccountState change)
         {
-            if (state == AccountState.Valid)
-            {
-                state = AccountState.Blocked;
-            }
-            else
-            {
-                state = AccountState.Valid;
-            }
+            state = change;
             Console.WriteLine($"account {name} is {state}.");
         }
         public int WithdrawFunds(int afname)
