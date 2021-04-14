@@ -15,15 +15,15 @@ namespace RapportModule
             {
                 Console.WriteLine("Niet geslaagd");
             }
-            else if (Percentage >= 50 && Percentage < 68)
+            else if (Percentage < 68)
             {
                 Console.WriteLine("Voldoende");
             }
-            else if (Percentage >= 68 && Percentage < 75)
+            else if (Percentage < 75)
             {
                 Console.WriteLine("Onderscheiding");
             }
-            else if (Percentage >= 75 && Percentage < 85)
+            else if (Percentage < 85)
             {
                 Console.WriteLine("Grote onderscheiding");
             }

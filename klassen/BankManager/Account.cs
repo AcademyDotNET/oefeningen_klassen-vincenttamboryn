@@ -21,24 +21,46 @@ namespace BankManager
         }
         public void ChangeState(AccountState change)
         {
-            state = change;
+            if (state == AccountState.Valid)
+            {
+                state = AccountState.Blocked;
+            }
+            else
+            {
+                state = AccountState.Valid;
+            }
             Console.WriteLine($"account {name} is {state}.");
         }
         public int WithdrawFunds(int afname)
         {
-            if (afname > amount)
+            if (state == AccountState.Valid)
             {
-                afname = Convert.ToInt32(amount);
-                Console.WriteLine("insufficient funds");
+                if (afname > amount)
+                {
+                    afname = Convert.ToInt32(amount);
+                    Console.WriteLine("insufficient funds");
+                }
+                amount -= afname;
+                Console.WriteLine($"Currently withdrawing {afname} euro from the account of {name}");
+                return afname;
             }
-            amount -= afname;
-            Console.WriteLine($"Currently withdrawing {afname} euro from the account of {name}");
-            return afname;
+            else
+            {
+                Console.WriteLine("Error, this account is blocked");
+                return 0;
+            }
         }
-        public void PayInFunds(int deposit)
+        public void PayInFunds(double deposit)
         {
-            Console.WriteLine($"Currently depositing {deposit} euro into the account of {name}");
-            amount += deposit;
+            if (state == AccountState.Valid)
+            {
+                Console.WriteLine($"Currently depositing {deposit} euro into the account of {name}");
+                amount += deposit;
+            }
+            else
+            {
+                Console.WriteLine("Error, this account is blocked");
+            }
         }
         public double GetBalance()
         {

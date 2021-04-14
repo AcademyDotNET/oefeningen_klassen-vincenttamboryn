@@ -9,7 +9,6 @@ namespace RapportModule
             Resultaat rapport = new Resultaat();
             rapport.Percentage = 65;
             rapport.PrintGraad();
-            Console.WriteLine("test");
         }
     }
 }

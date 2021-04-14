@@ -1,8 +1,15 @@
 {
   "ExpandedNodes": [
     "",
-    "\\klassen"
+    "\\klassen",
+    "\\klassen\\BankManager",
+    "\\klassen\\Figuren",
+    "\\klassen\\Nummers",
+    "\\klassen\\PizzaTime",
+    "\\klassen\\RapportModule",
+    "\\klassen\\Sports",
+    "\\klassen\\StudentKlasse"
   ],
-  "SelectedNode": "\\klassen\\klassen.sln",
+  "SelectedNode": "\\klassen\\RapportModule\\Program.cs",
   "PreviewInSolutionExplorer": false
 }
