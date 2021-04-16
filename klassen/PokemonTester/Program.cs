@@ -131,6 +131,7 @@ namespace PokemonTester
             // initialise changeable values for the hp of both pokemon
             int health1 = poke1.Full_HP;
             int health2 = poke2.Full_HP;
+            Random rNG = new Random();
 
             // attack sequance, fastest pokemon attacks first, then slowest, both attack with with their highest attack stat, minimum 2 damage, until one has 0 hp. 
             do
@@ -139,25 +140,25 @@ namespace PokemonTester
                 {
                     if (poke1.Full_Attack > poke1.Full_SpecialAttack)
                     {
-                        health2 -= Math.Max(poke1.Full_Attack - poke2.Full_Defense, 2);
+                        health2 -= Convert.ToInt32((double)(((2 * poke1.Level / 5) * (poke1.Full_Attack / poke2.Full_Defense) / 50) + 2) * ((double)rNG.Next(85,100) /100));
                         Console.WriteLine($"{poke1.Name} hits {poke2.Name} with a regular attack!");
                         Console.WriteLine($"{poke2.Name} has {Math.Max(health2,0)} HP left\n");
                     }
                     else
                     {
-                        health2 -= Math.Max(poke1.Full_SpecialAttack - poke2.Full_SpecialDefense, 2);
+                        health2 -= Convert.ToInt32((double)(((2 * poke1.Level / 5) * (poke1.Full_SpecialAttack / poke2.Full_SpecialDefense) / 50) + 2) *((double)rNG.Next(85, 100) / 100));
                         Console.WriteLine($"{poke1.Name} hits {poke2.Name} with a special attack!");
                         Console.WriteLine($"{poke2.Name} has {Math.Max(health2, 0)} HP left\n");
                     }
                     if (poke2.Full_Attack > poke2.Full_SpecialAttack)
                     {
-                        health1 -= Math.Max(poke2.Full_Attack - poke1.Full_Defense, 2);
+                        health1 -= Convert.ToInt32((double)(((2 * poke2.Level / 5) * (poke2.Full_Attack / poke1.Full_Defense) / 50) + 2) *((double)rNG.Next(85, 100) / 100));
                         Console.WriteLine($"{poke2.Name} hits {poke1.Name} with a regular attack!");
                         Console.WriteLine($"{poke1.Name} has {Math.Max(health1, 0)} HP left\n");
                     }
                     else
                     {
-                        health1 -= Math.Max(poke2.Full_SpecialAttack - poke1.Full_SpecialDefense, 2);
+                        health1 -= Convert.ToInt32((double)(((2 * poke2.Level / 5) * (poke2.Full_SpecialAttack / poke1.Full_SpecialDefense) / 50) + 2) *((double)rNG.Next(85, 100) / 100));
                         Console.WriteLine($"{poke2.Name} hits {poke1.Name} with a special attack!");
                         Console.WriteLine($"{poke1.Name} has {Math.Max(health1, 0)} HP left\n");
                     }
@@ -166,25 +167,25 @@ namespace PokemonTester
                 {
                     if (poke2.Full_Attack > poke2.Full_SpecialAttack)
                     {
-                        health1 -= Math.Max(poke2.Full_Attack - poke1.Full_Defense, 2);
+                        health1 -= Convert.ToInt32((double)(((2 * poke2.Level / 5) * (poke2.Full_Attack / poke1.Full_Defense) / 50) + 2) *((double)rNG.Next(85, 100) / 100));
                         Console.WriteLine($"{poke2.Name} hits {poke1.Name} with a regular attack!");
                         Console.WriteLine($"{poke1.Name} has {Math.Max(health1, 0)} HP left\n");
                     }
                     else
                     {
-                        health1 -= Math.Max(poke2.Full_SpecialAttack - poke1.Full_SpecialDefense, 2);
+                        health1 -= Convert.ToInt32((double)(((2 * poke2.Level / 5) * (poke2.Full_Attack / poke1.Full_Defense) / 50) + 2) *((double)rNG.Next(85, 100) / 100));
                         Console.WriteLine($"{poke2.Name} hits {poke1.Name} with a special attack!");
                         Console.WriteLine($"{poke1.Name} has {Math.Max(health1, 0)} HP left\n");
                     }
                     if (poke1.Full_Attack > poke1.Full_SpecialAttack)
                     {
-                        health2 -= Math.Max(poke1.Full_Attack - poke2.Full_Defense, 2);
+                        health2 -= Convert.ToInt32((double)(((2 * poke1.Level / 5) * (poke1.Full_Attack / poke2.Full_Defense) / 50) + 2) *((double)rNG.Next(85, 100) / 100));
                         Console.WriteLine($"{poke1.Name} hits {poke2.Name} with a regular attack!");
                         Console.WriteLine($"{poke2.Name} has {Math.Max(health1, 0)} HP left\n");
                     }
                     else
                     {
-                        health2 -= Math.Max(poke1.Full_SpecialAttack - poke2.Full_SpecialDefense, 2);
+                        health2 -= Convert.ToInt32((double)(((2 * poke1.Level / 5) * (poke1.Full_SpecialAttack / poke2.Full_SpecialDefense) / 50) + 2) *((double)rNG.Next(85, 100) / 100));
                         Console.WriteLine($"{poke1.Name} hits {poke2.Name} with a special attack!");
                         Console.WriteLine($"{poke2.Name} has {Math.Max(health1, 0)} HP left\n");
                     }
