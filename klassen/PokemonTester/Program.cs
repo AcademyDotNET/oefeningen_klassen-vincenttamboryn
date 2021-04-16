@@ -132,32 +132,32 @@ namespace PokemonTester
             int health1 = poke1.Full_HP;
             int health2 = poke2.Full_HP;
 
-            // attack sequance, fastest pokemon attacks first, then slowest, until one has 0 hp. 
+            // attack sequance, fastest pokemon attacks first, then slowest, both attack with with their highest attack stat, minimum 2 damage, until one has 0 hp. 
             do
             {
                 if (poke1.Full_Speed > poke2.Full_Speed)
                 {
                     if (poke1.Full_Attack > poke1.Full_SpecialAttack)
                     {
-                        health2 -= Math.Max(poke1.Full_Attack - poke2.Full_Defense, 10);
+                        health2 -= Math.Max(poke1.Full_Attack - poke2.Full_Defense, 2);
                         Console.WriteLine($"{poke1.Name} hits {poke2.Name} with a regular attack!");
                         Console.WriteLine($"{poke2.Name} has {Math.Max(health2,0)} HP left\n");
                     }
                     else
                     {
-                        health2 -= Math.Max(poke1.Full_SpecialAttack - poke2.Full_SpecialDefense, 10);
+                        health2 -= Math.Max(poke1.Full_SpecialAttack - poke2.Full_SpecialDefense, 2);
                         Console.WriteLine($"{poke1.Name} hits {poke2.Name} with a special attack!");
                         Console.WriteLine($"{poke2.Name} has {Math.Max(health2, 0)} HP left\n");
                     }
                     if (poke2.Full_Attack > poke2.Full_SpecialAttack)
                     {
-                        health1 -= Math.Max(poke2.Full_Attack - poke1.Full_Defense, 10);
+                        health1 -= Math.Max(poke2.Full_Attack - poke1.Full_Defense, 2);
                         Console.WriteLine($"{poke2.Name} hits {poke1.Name} with a regular attack!");
                         Console.WriteLine($"{poke1.Name} has {Math.Max(health1, 0)} HP left\n");
                     }
                     else
                     {
-                        health1 -= Math.Max(poke2.Full_SpecialAttack - poke1.Full_SpecialDefense, 10);
+                        health1 -= Math.Max(poke2.Full_SpecialAttack - poke1.Full_SpecialDefense, 2);
                         Console.WriteLine($"{poke2.Name} hits {poke1.Name} with a special attack!");
                         Console.WriteLine($"{poke1.Name} has {Math.Max(health1, 0)} HP left\n");
                     }
@@ -166,25 +166,25 @@ namespace PokemonTester
                 {
                     if (poke2.Full_Attack > poke2.Full_SpecialAttack)
                     {
-                        health1 -= Math.Max(poke2.Full_Attack - poke1.Full_Defense, 10);
+                        health1 -= Math.Max(poke2.Full_Attack - poke1.Full_Defense, 2);
                         Console.WriteLine($"{poke2.Name} hits {poke1.Name} with a regular attack!");
                         Console.WriteLine($"{poke1.Name} has {Math.Max(health1, 0)} HP left\n");
                     }
                     else
                     {
-                        health1 -= Math.Max(poke2.Full_SpecialAttack - poke1.Full_SpecialDefense, 10);
+                        health1 -= Math.Max(poke2.Full_SpecialAttack - poke1.Full_SpecialDefense, 2);
                         Console.WriteLine($"{poke2.Name} hits {poke1.Name} with a special attack!");
                         Console.WriteLine($"{poke1.Name} has {Math.Max(health1, 0)} HP left\n");
                     }
                     if (poke1.Full_Attack > poke1.Full_SpecialAttack)
                     {
-                        health2 -= Math.Max(poke1.Full_Attack - poke2.Full_Defense, 10);
+                        health2 -= Math.Max(poke1.Full_Attack - poke2.Full_Defense, 2);
                         Console.WriteLine($"{poke1.Name} hits {poke2.Name} with a regular attack!");
                         Console.WriteLine($"{poke2.Name} has {Math.Max(health1, 0)} HP left\n");
                     }
                     else
                     {
-                        health2 -= Math.Max(poke1.Full_SpecialAttack - poke2.Full_SpecialDefense, 10);
+                        health2 -= Math.Max(poke1.Full_SpecialAttack - poke2.Full_SpecialDefense, 2);
                         Console.WriteLine($"{poke1.Name} hits {poke2.Name} with a special attack!");
                         Console.WriteLine($"{poke2.Name} has {Math.Max(health1, 0)} HP left\n");
                     }
