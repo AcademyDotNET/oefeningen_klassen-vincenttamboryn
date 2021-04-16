@@ -7,26 +7,30 @@ namespace PokemonTester
     {
         static void Main(string[] args)
         {
-            Pokemon myPokemon = PokemonInitialiser();
-            Pokemon enemy = PokemonInitialiser();
+            Pokemon myPokemon = PokemonGenerator();
+            Pokemon enemy = PokemonGenerator();
 
             myPokemon.ShowInfo();
             enemy.ShowInfo();
+            Console.WriteLine("ready to battle?");
+            Console.ReadLine();
 
             Battle(myPokemon, enemy);
         }
         static Pokemon PokemonGenerator()
         {
+            // 
             Pokemon pokemon2 = new Pokemon();
             Random randomGenerator = new Random();
             Console.WriteLine("what is the name of this pokemon");
             pokemon2.Name = Console.ReadLine();
             pokemon2.Base_HP = randomGenerator.Next(10,255);
-            pokemon2.Base_Attack = randomGenerator.Next(10, 190);
-            pokemon2.Base_Defense = randomGenerator.Next(10, 250);
-            pokemon2.Base_SpecialAttack = randomGenerator.Next(10, 194);
-            pokemon2.Base_SpecialDefense = randomGenerator.Next(10, 250);
-            pokemon2.Base_Speed = randomGenerator.Next(10, 200);
+            pokemon2.Base_Attack = randomGenerator.Next(10, Math.Max(Math.Min(650 - pokemon2.Base_HP, 250),20));
+            pokemon2.Base_Defense = randomGenerator.Next(10, Math.Max(Math.Min(650 - pokemon2.Base_HP - pokemon2.Base_Attack, 250),20));
+            pokemon2.Base_SpecialAttack = randomGenerator.Next(10, Math.Max(Math.Min(650 - pokemon2.Base_HP - pokemon2.Base_Attack - pokemon2.Base_Defense, 200),20));
+            pokemon2.Base_SpecialDefense = randomGenerator.Next(10, Math.Max(Math.Min(650 - pokemon2.Base_HP - pokemon2.Base_Attack - pokemon2.Base_Defense - pokemon2.Base_SpecialAttack, 250), 20));
+            pokemon2.Base_Speed = randomGenerator.Next(10, Math.Max(Math.Min(650 - pokemon2.Base_HP - pokemon2.Base_Attack - pokemon2.Base_Defense - pokemon2.Base_SpecialAttack - pokemon2.Base_SpecialDefense, 250), 20));
+            pokemon2.LevelUp(49);
             return pokemon2;
         }
         static Pokemon PokemonInitialiser()
@@ -185,13 +189,13 @@ namespace PokemonTester
                     {
                         health2 -= Convert.ToInt32(Convert.ToDouble(((2 * poke1.Level / 5) * (poke1.Full_Attack / poke2.Full_Defense) * power / 50) + 2) *(Convert.ToDouble(rNG.Next(randomnessLowerBound, 101)) / 100.0));
                         Console.WriteLine($"{poke1.Name} hits {poke2.Name} with a regular attack!");
-                        Console.WriteLine($"{poke2.Name} has {Math.Max(health1, 0)} HP left\n");
+                        Console.WriteLine($"{poke2.Name} has {Math.Max(health2, 0)} HP left\n");
                     }
                     else
                     {
                         health2 -= Convert.ToInt32(Convert.ToDouble(((2 * poke1.Level / 5) * (poke1.Full_SpecialAttack / poke2.Full_SpecialDefense) * power / 50) + 2) *(Convert.ToDouble(rNG.Next(randomnessLowerBound, 101)) / 100.0));
                         Console.WriteLine($"{poke1.Name} hits {poke2.Name} with a special attack!");
-                        Console.WriteLine($"{poke2.Name} has {Math.Max(health1, 0)} HP left\n");
+                        Console.WriteLine($"{poke2.Name} has {Math.Max(health2, 0)} HP left\n");
                     }
                 }
             } while (health1 > 0 && health2 > 0);
