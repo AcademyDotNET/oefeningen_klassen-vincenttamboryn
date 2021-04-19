@@ -7,7 +7,7 @@ namespace PokemonTester
     {
         static void Main(string[] args)
         {
-            Pokemon.NoLevelingAllowed = true;
+            Pokemon.NoLevelingAllowed = false;
             Pokemon myPokemon = new Pokemon("Dragonite",91,134,95,100,100,80);
             myPokemon.LevelUp(49);
             Pokemon enemy = Pokemon.PokemonGenerator();
