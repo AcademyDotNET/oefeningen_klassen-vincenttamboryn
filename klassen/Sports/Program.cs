@@ -15,7 +15,7 @@ namespace Sports
             wom.StelIn("Wampa", BeerPongPlayer.Beers.Duvel, 50, false, "HotHands");
             kobe.StelIn("Koube", BeerPongPlayer.Beers.Duvel, 45, false, "Lamzakken");
             hendrik.StelIn("Trikkendoedel", BeerPongPlayer.Beers.Duvel, 60, false, "Lamzakken");
-
+            /*
             vincent.ThrowBall();
             wom.ThrowBall();
             kobe.ThrowBall();
@@ -28,6 +28,17 @@ namespace Sports
                 kobe.drinkBeer();
                 hendrik.drinkBeer();
             }
+            */
+
+
+            BeerPongPlayer.SimulateGame(vincent);
+            BeerPongPlayer.SimulateGame(hendrik);
+            BeerPongPlayer.SimulateCompetition(vincent, hendrik);
+
+            BeerPongPlayer champion = BeerPongPlayer.BestPlayer(vincent, hendrik);
+            champion.ThrowBall();
+            champion.drinkBeer();
+
         }
     }
 }

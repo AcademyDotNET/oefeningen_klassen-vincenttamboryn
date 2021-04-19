@@ -8,6 +8,10 @@ namespace Meetlat
 {
     class Meetlat
     {
+        public Meetlat(double lengteM)
+        {
+            beginLengte = lengteM;
+        }
         private double beginLengte;
         public double BeginLengte
         {

@@ -110,7 +110,7 @@ namespace Sports
             Random myGen = new Random();
             int rNG = myGen.Next(0, Math.Max(1, 12-beersDrunk));
             System.Threading.Thread.Sleep(500);
-            if (rNG < 2)
+            if (rNG < 2 && beersDrunk > 3)
             {
                 isDrunk = true;
             }
@@ -120,6 +120,48 @@ namespace Sports
                 Console.WriteLine($"{name} is drunk.");
             }
             Console.WriteLine("");
+        }
+        public static void SimulateGame(BeerPongPlayer player1)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                player1.ThrowBall();
+                player1.drinkBeer();
+            }
+        }
+        public static void SimulateCompetition(BeerPongPlayer player1, BeerPongPlayer player2)
+        {
+            Random myGen = new Random();
+            int chanceP1 = myGen.Next(0, Convert.ToInt32(player1.Accuracy));
+            int chanceP2 = myGen.Next(0, Convert.ToInt32(player2.Accuracy));
+            if (chanceP1 > chanceP2)
+            {
+                Console.WriteLine($"{player1.Name} has won!");
+            }
+            else if (chanceP1 < chanceP2)
+            {
+                Console.WriteLine($"{player2.Name} has won!");
+            }
+            else
+            {
+                Console.WriteLine($"it's a draw!");
+            }
+        }
+        public static BeerPongPlayer BestPlayer(BeerPongPlayer player1, BeerPongPlayer player2)
+        {
+            Random myGen = new Random();
+            int chanceP1 = myGen.Next(0, Convert.ToInt32(player1.Accuracy));
+            int chanceP2 = myGen.Next(0, Convert.ToInt32(player2.Accuracy));
+            if (chanceP1 > chanceP2)
+            {
+                Console.WriteLine($"{player1.Name} is the best player!");
+                return player1;
+            }
+            else
+            {
+                Console.WriteLine($"{player2.Name} is the best player!");
+                return player2;
+            }
         }
     } 
 } 
