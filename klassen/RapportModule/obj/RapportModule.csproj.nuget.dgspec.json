@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\vince\\source\\repos\\AcademyDotNET\\oefeningen_klassen-vincenttamboryn\\klassen\\RapportModule\\RapportModule.csproj": {}
+    "C:\\Users\\vince\\Source\\Repos\\AcademyDotNET\\oefeningen_klassen-vincenttamboryn\\klassen\\RapportModule\\RapportModule.csproj": {}
   },
   "projects": {
-    "C:\\Users\\vince\\source\\repos\\AcademyDotNET\\oefeningen_klassen-vincenttamboryn\\klassen\\RapportModule\\RapportModule.csproj": {
+    "C:\\Users\\vince\\Source\\Repos\\AcademyDotNET\\oefeningen_klassen-vincenttamboryn\\klassen\\RapportModule\\RapportModule.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\vince\\source\\repos\\AcademyDotNET\\oefeningen_klassen-vincenttamboryn\\klassen\\RapportModule\\RapportModule.csproj",
+        "projectUniqueName": "C:\\Users\\vince\\Source\\Repos\\AcademyDotNET\\oefeningen_klassen-vincenttamboryn\\klassen\\RapportModule\\RapportModule.csproj",
         "projectName": "RapportModule",
-        "projectPath": "C:\\Users\\vince\\source\\repos\\AcademyDotNET\\oefeningen_klassen-vincenttamboryn\\klassen\\RapportModule\\RapportModule.csproj",
+        "projectPath": "C:\\Users\\vince\\Source\\Repos\\AcademyDotNET\\oefeningen_klassen-vincenttamboryn\\klassen\\RapportModule\\RapportModule.csproj",
         "packagesPath": "C:\\Users\\vince\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\vince\\source\\repos\\AcademyDotNET\\oefeningen_klassen-vincenttamboryn\\klassen\\RapportModule\\obj\\",
+        "outputPath": "C:\\Users\\vince\\Source\\Repos\\AcademyDotNET\\oefeningen_klassen-vincenttamboryn\\klassen\\RapportModule\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\vince\\AppData\\Roaming\\NuGet\\NuGet.Config",
