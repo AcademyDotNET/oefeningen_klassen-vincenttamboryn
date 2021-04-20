@@ -212,11 +212,11 @@ namespace PokemonTester
             Console.WriteLine("what is the name of this pokemon");
             pokemon2.Name = Console.ReadLine();
             pokemon2.Base_HP = randomGenerator.Next(10, 255);
-            pokemon2.Base_Attack = randomGenerator.Next(10, Math.Max(Math.Min(650 - pokemon2.Base_HP, 250), 20));
-            pokemon2.Base_Defense = randomGenerator.Next(10, Math.Max(Math.Min(650 - pokemon2.Base_HP - pokemon2.Base_Attack, 250), 20));
+            pokemon2.Base_Attack = randomGenerator.Next(10, Math.Max(Math.Min(650 - pokemon2.Base_HP, 255), 20));
+            pokemon2.Base_Defense = randomGenerator.Next(10, Math.Max(Math.Min(650 - pokemon2.Base_HP - pokemon2.Base_Attack, 200), 20));
             pokemon2.Base_SpecialAttack = randomGenerator.Next(10, Math.Max(Math.Min(650 - pokemon2.Base_HP - pokemon2.Base_Attack - pokemon2.Base_Defense, 200), 20));
-            pokemon2.Base_SpecialDefense = randomGenerator.Next(10, Math.Max(Math.Min(650 - pokemon2.Base_HP - pokemon2.Base_Attack - pokemon2.Base_Defense - pokemon2.Base_SpecialAttack, 250), 20));
-            pokemon2.Base_Speed = randomGenerator.Next(10, Math.Max(Math.Min(650 - pokemon2.Base_HP - pokemon2.Base_Attack - pokemon2.Base_Defense - pokemon2.Base_SpecialAttack - pokemon2.Base_SpecialDefense, 250), 20));
+            pokemon2.Base_SpecialDefense = randomGenerator.Next(10, Math.Max(Math.Min(650 - pokemon2.Base_HP - pokemon2.Base_Attack - pokemon2.Base_Defense - pokemon2.Base_SpecialAttack, 200), 20));
+            pokemon2.Base_Speed = randomGenerator.Next(10, Math.Max(Math.Min(650 - pokemon2.Base_HP - pokemon2.Base_Attack - pokemon2.Base_Defense - pokemon2.Base_SpecialAttack - pokemon2.Base_SpecialDefense, 200), 20));
             pokemon2.LevelUp(49);
             HowManyRandomMons++;
             return pokemon2;
