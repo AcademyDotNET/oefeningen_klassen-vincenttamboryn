@@ -257,26 +257,22 @@ namespace PokemonTester
                 {
                     if (poke1.Full_Attack > poke1.Full_SpecialAttack)
                     {
-                        health2 -= Convert.ToInt32(Convert.ToDouble(((2 * poke1.Level / 5) * (poke1.Full_Attack / poke2.Full_Defense) * power / 50) + 2) * (Convert.ToDouble(rNG.Next(randomnessLowerBound, 101)) / 100.0));
-                        Console.WriteLine($"{poke1.Name} hits {poke2.Name} with a regular attack!");
+                        health2 -= DamageCalculations(poke1,poke2,"normal",80);
                         Console.WriteLine($"{poke2.Name} has {Math.Max(health2, 0)} HP left\n");
                     }
                     else
                     {
-                        health2 -= Convert.ToInt32(Convert.ToDouble(((2 * poke1.Level / 5) * (poke1.Full_SpecialAttack / poke2.Full_SpecialDefense) * power / 50) + 2) * (Convert.ToDouble(rNG.Next(randomnessLowerBound, 101)) / 100.0));
-                        Console.WriteLine($"{poke1.Name} hits {poke2.Name} with a special attack!");
+                        health2 -= DamageCalculations(poke1, poke2, "special", 80);
                         Console.WriteLine($"{poke2.Name} has {Math.Max(health2, 0)} HP left\n");
                     }
                     if (poke2.Full_Attack > poke2.Full_SpecialAttack)
                     {
-                        health1 -= Convert.ToInt32(Convert.ToDouble(((2 * poke2.Level / 5) * (poke2.Full_Attack / poke1.Full_Defense) * power / 50) + 2) * (Convert.ToDouble(rNG.Next(randomnessLowerBound, 101)) / 100.0));
-                        Console.WriteLine($"{poke2.Name} hits {poke1.Name} with a regular attack!");
+                        health1 -= DamageCalculations(poke2, poke1, "normal", 80);
                         Console.WriteLine($"{poke1.Name} has {Math.Max(health1, 0)} HP left\n");
                     }
                     else
                     {
-                        health1 -= Convert.ToInt32(Convert.ToDouble(((2 * poke2.Level / 5) * (poke2.Full_SpecialAttack / poke1.Full_SpecialDefense) * power / 50) + 2) * (Convert.ToDouble(rNG.Next(randomnessLowerBound, 101)) / 100.0));
-                        Console.WriteLine($"{poke2.Name} hits {poke1.Name} with a special attack!");
+                        health1 -= DamageCalculations(poke2, poke1, "special", 80);
                         Console.WriteLine($"{poke1.Name} has {Math.Max(health1, 0)} HP left\n");
                     }
                 }
@@ -284,26 +280,22 @@ namespace PokemonTester
                 {
                     if (poke2.Full_Attack > poke2.Full_SpecialAttack)
                     {
-                        health1 -= Convert.ToInt32(Convert.ToDouble(((2 * poke2.Level / 5) * (poke2.Full_Attack / poke1.Full_Defense) * power / 50) + 2) * (Convert.ToDouble(rNG.Next(randomnessLowerBound, 101)) / 100.0));
-                        Console.WriteLine($"{poke2.Name} hits {poke1.Name} with a regular attack!");
+                        health1 -= DamageCalculations(poke2, poke1, "normal", 80);
                         Console.WriteLine($"{poke1.Name} has {Math.Max(health1, 0)} HP left\n");
                     }
                     else
                     {
-                        health1 -= Convert.ToInt32(Convert.ToDouble(((2 * poke2.Level / 5) * (poke2.Full_Attack / poke1.Full_Defense) * power / 50) + 2) * (Convert.ToDouble(rNG.Next(randomnessLowerBound, 101)) / 100.0));
-                        Console.WriteLine($"{poke2.Name} hits {poke1.Name} with a special attack!");
+                        health1 -= DamageCalculations(poke2, poke1, "special", 80);
                         Console.WriteLine($"{poke1.Name} has {Math.Max(health1, 0)} HP left\n");
                     }
                     if (poke1.Full_Attack > poke1.Full_SpecialAttack)
                     {
-                        health2 -= Convert.ToInt32(Convert.ToDouble(((2 * poke1.Level / 5) * (poke1.Full_Attack / poke2.Full_Defense) * power / 50) + 2) * (Convert.ToDouble(rNG.Next(randomnessLowerBound, 101)) / 100.0));
-                        Console.WriteLine($"{poke1.Name} hits {poke2.Name} with a regular attack!");
+                        health2 -= DamageCalculations(poke1, poke2, "normal", 80);
                         Console.WriteLine($"{poke2.Name} has {Math.Max(health2, 0)} HP left\n");
                     }
                     else
                     {
-                        health2 -= Convert.ToInt32(Convert.ToDouble(((2 * poke1.Level / 5) * (poke1.Full_SpecialAttack / poke2.Full_SpecialDefense) * power / 50) + 2) * (Convert.ToDouble(rNG.Next(randomnessLowerBound, 101)) / 100.0));
-                        Console.WriteLine($"{poke1.Name} hits {poke2.Name} with a special attack!");
+                        health2 -= DamageCalculations(poke1, poke2, "special", 80);
                         Console.WriteLine($"{poke2.Name} has {Math.Max(health2, 0)} HP left\n");
                     }
                 }
@@ -327,9 +319,26 @@ namespace PokemonTester
                 return 1;
             }
         }
+        static int DamageCalculations(Pokemon attackingPoke, Pokemon defendingPoke, string normalSpecial,int power)
+        {
+            Random rNG = new Random();
+            int randomnessLowerBound = 85;
+            int hpLost;
+            if (normalSpecial == "special")
+            {
+                hpLost = Convert.ToInt32(Convert.ToDouble(((2 * attackingPoke.Level / 5) * (attackingPoke.Full_SpecialAttack / defendingPoke.Full_SpecialDefense) * power / 50) + 2) * (Convert.ToDouble(rNG.Next(randomnessLowerBound, 101)) / 100.0));
+                Console.WriteLine($"{attackingPoke.Name} hits {defendingPoke.Name} with a special attack!");
+            }
+            else
+            {
+                hpLost = Convert.ToInt32(Convert.ToDouble(((2 * attackingPoke.Level / 5) * (attackingPoke.Full_Attack / defendingPoke.Full_Defense) * power / 50) + 2) * (Convert.ToDouble(rNG.Next(randomnessLowerBound, 101)) / 100.0));
+                Console.WriteLine($"{attackingPoke.Name} hits {defendingPoke.Name} with a regular attack!");
+            }
+            return hpLost;
+        }
         public static void Info()
         {
-            Console.WriteLine($"A total of {Levelups} levels have been gained");
+            Console.WriteLine($"\nA total of {Levelups} levels have been gained");
             Console.WriteLine($"There have been a total of {NumberOfBattles} battles");
             Console.WriteLine($"{Draws} of those ended in a draw");
             Console.WriteLine($"{HowManyRandomMons} random pokemons were generated");
