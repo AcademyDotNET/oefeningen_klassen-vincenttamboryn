@@ -195,7 +195,7 @@ namespace PokemonTester
             else
             {
                 Levelups += xLevels;
-                Level = Level + xLevels;
+                Level += xLevels;
             }
         }
         public void ShowInfo()
@@ -207,6 +207,8 @@ namespace PokemonTester
         }
         public static Pokemon PokemonGenerator()
         {
+            //generates a random pokemon and levels it to level 50. Tower of random and math.min/max is just so that it doesn't generate pokemons with all max stats
+
             Pokemon pokemon2 = new Pokemon();
             Random randomGenerator = new Random();
             Console.WriteLine("what is the name of this pokemon");
@@ -250,6 +252,7 @@ namespace PokemonTester
             // Power of a used move (moves not inplemented so base 80) & randomness of damage
             int power = 80;
             int randomnessLowerBound = 85;
+
             // attack sequance, fastest pokemon attacks first, then slowest, both attack with with their highest attack stat, minimum 2 damage, until one has 0 hp. 
             do
             {
@@ -321,6 +324,8 @@ namespace PokemonTester
         }
         static int DamageCalculations(Pokemon attackingPoke, Pokemon defendingPoke, string normalSpecial,int power)
         {
+            //calculates the damage a pokemon would take and returns it. Randomness makes it so damage isn't predetermined
+
             Random rNG = new Random();
             int randomnessLowerBound = 85;
             int hpLost;

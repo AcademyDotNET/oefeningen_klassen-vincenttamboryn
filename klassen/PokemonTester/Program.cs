@@ -99,6 +99,9 @@ namespace PokemonTester
         }
         static Pokemon ChooseAPokemon(Pokemon[]dex)
         {
+            //allows the user to choose a pokemon, checks if the input is the name of a pokemon.
+            //repeats this loop untill the input corresponds to a pokemon.
+            //if the input does not correspond to a pokemon the programs asks if you want to see a list of all available pokemons.
             bool condition = true;
             int index = 0;
             do
@@ -117,7 +120,7 @@ namespace PokemonTester
                 }
                 if (condition)
                 {
-                    Console.WriteLine("This is not a valid pokemon, try again.\n Would you like a list of all available pokemon?(yes or no)");
+                    Console.WriteLine("This is not a valid pokemon, try again.\nWould you like a list of all available pokemon? (yes or no)");
                     string yesNo = Console.ReadLine().ToLower();
                     switch (yesNo)
                     {
