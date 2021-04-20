@@ -27,29 +27,6 @@ namespace PokemonTester
             Console.ReadLine();
 
             Pokemon.Battle(myPokemon, enemy);
-
-
-        }
-        static Pokemon PokemonInitialiser()
-        {
-            Pokemon pokemon1 = new Pokemon();
-
-            Console.WriteLine("Which pokemon would you like to create? ");
-            string name = Console.ReadLine();
-
-            pokemon1.Name = name;
-            pokemon1.Base_HP = Convert.ToInt32(GiveNumber("int", "What is the base HP of this pokemon?", 0, 255));
-            pokemon1.Base_Attack = Convert.ToInt32(GiveNumber("int", "What is the base attack of this pokemon?", 0, 255)); ;
-            pokemon1.Base_Defense = Convert.ToInt32(GiveNumber("int", "What is the base defense of this pokemon?", 0, 255)); ;
-            pokemon1.Base_SpecialAttack = Convert.ToInt32(GiveNumber("int", "What is the base special attack of this pokemon?", 0, 255)); ;
-            pokemon1.Base_SpecialDefense = Convert.ToInt32(GiveNumber("int", "What is the base special defense of this pokemon?", 0, 255)); ;
-            pokemon1.Base_Speed = Convert.ToInt32(GiveNumber("int", "What is the base speed of this pokemon?", 0, 255)); ;
-            int levelUps = Convert.ToInt32(GiveNumber("int", "which level do you want this pokemon to be?", 1, 100));
-            if (levelUps > 1)
-            {
-                pokemon1.LevelUp(levelUps - 1);
-            }
-            return pokemon1;
         }
         static double GiveNumber(string test, string question, double minValue = double.NegativeInfinity, double maxvalue = double.PositiveInfinity)
         {
