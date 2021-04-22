@@ -25,11 +25,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokemonTester", "PokemonTes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kluis", "Kluis\Kluis.csproj", "{45C4FEF7-FDF9-40C9-BFAE-A574EA8E8320}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrijzenMetForeach", "PrijzenMetForeach\PrijzenMetForeach.csproj", "{4BE98651-81F9-4FA0-8669-C4F9B1D62F43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrijzenMetForeach", "PrijzenMetForeach\PrijzenMetForeach.csproj", "{4BE98651-81F9-4FA0-8669-C4F9B1D62F43}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Speelkaarten", "Speelkaarten\Speelkaarten.csproj", "{BC472C3A-A0AF-477A-995B-4D0E89659855}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Speelkaarten", "Speelkaarten\Speelkaarten.csproj", "{BC472C3A-A0AF-477A-995B-4D0E89659855}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookmarkManager", "BookmarkManager\BookmarkManager.csproj", "{7D2C8CEC-8EC7-49AC-B1D3-6985AB189EA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookmarkManager", "BookmarkManager\BookmarkManager.csproj", "{7D2C8CEC-8EC7-49AC-B1D3-6985AB189EA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HetDierenrijk", "HetDierenrijk\HetDierenrijk.csproj", "{04B213A6-862D-4464-87F2-2E16A1B39187}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ziekenhuis", "Ziekenhuis\Ziekenhuis.csproj", "{A89F80FA-4F8E-43BA-AA63-F97FC14CBD51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BallGame", "BallGame\BallGame.csproj", "{46D14A18-16A2-4F41-849B-AEB702FD4943}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +99,18 @@ Global
 		{7D2C8CEC-8EC7-49AC-B1D3-6985AB189EA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D2C8CEC-8EC7-49AC-B1D3-6985AB189EA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D2C8CEC-8EC7-49AC-B1D3-6985AB189EA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04B213A6-862D-4464-87F2-2E16A1B39187}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04B213A6-862D-4464-87F2-2E16A1B39187}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04B213A6-862D-4464-87F2-2E16A1B39187}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04B213A6-862D-4464-87F2-2E16A1B39187}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A89F80FA-4F8E-43BA-AA63-F97FC14CBD51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A89F80FA-4F8E-43BA-AA63-F97FC14CBD51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A89F80FA-4F8E-43BA-AA63-F97FC14CBD51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A89F80FA-4F8E-43BA-AA63-F97FC14CBD51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46D14A18-16A2-4F41-849B-AEB702FD4943}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46D14A18-16A2-4F41-849B-AEB702FD4943}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46D14A18-16A2-4F41-849B-AEB702FD4943}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46D14A18-16A2-4F41-849B-AEB702FD4943}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

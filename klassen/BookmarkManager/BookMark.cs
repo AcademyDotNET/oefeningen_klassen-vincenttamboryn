@@ -11,7 +11,7 @@ namespace BookmarkManager
     {
         public string Naam { get; set; }
         public string URL { get; set; }
-        public void OpenSite()
+        public virtual void OpenSite()
         {
             Process.Start(@"C:\Program Files\Google\Chrome\Application\chrome.exe", URL);
         }

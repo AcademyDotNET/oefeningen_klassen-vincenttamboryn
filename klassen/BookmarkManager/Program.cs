@@ -9,10 +9,10 @@ namespace BookmarkManager
         {
 
             int numberOfBookmarks = Convert.ToInt32(GiveNumber("int","How many bookmarks would you like to make?",0));
-            BookMark[] arrayBookmarks = new BookMark[numberOfBookmarks];
+            HiddenBookmark[] arrayBookmarks = new HiddenBookmark[numberOfBookmarks];
             for (int i = 0; i < numberOfBookmarks; i++)
             {
-                arrayBookmarks[i] = new BookMark();
+                arrayBookmarks[i] = new HiddenBookmark();
             }
             foreach (var item in arrayBookmarks)
             {
@@ -79,7 +79,7 @@ namespace BookmarkManager
             }
 
         }
-        static void CheckAndCreateURL(BookMark site)
+        static void CheckAndCreateURL(HiddenBookmark site)
         {
             Console.WriteLine("What is the name of the next website?");
             site.Naam = Console.ReadLine();
@@ -96,7 +96,7 @@ namespace BookmarkManager
             } while (!result);
             site.URL = url;
         }
-        static void Menu(BookMark[]websites)
+        static void Menu(HiddenBookmark[]websites)
         {
             Console.WriteLine($"which website would you like to open?");
             for (int i = 0; i < websites.Length; i++)
