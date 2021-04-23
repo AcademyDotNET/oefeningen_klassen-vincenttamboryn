@@ -42,6 +42,11 @@ namespace BallGame
                 y += vy;
             }
         }
+        public void Bounce()
+        {
+            vx *= -1;
+            vy *= -1;
+        }
         public int BallLeft()
         {
             if (drawColor == ConsoleColor.Black)
