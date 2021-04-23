@@ -185,6 +185,11 @@ namespace PokemonTester
             get
             { return (((Base_Speed + 50) * Level) / 50) + 5; }
         }
+        public override string ToString()
+        {
+            return $"{ Name} (level { Level})\n* Health = { Full_HP }\n* Attack = { Full_Attack }\n* Defense = { Full_Defense }\n" +
+                $"* Special Attack = {Full_SpecialAttack}\n* Special Defense = {Full_SpecialDefense}\n* Speed = {Full_Speed}";
+        }
 
         public void LevelUp(int xLevels = 1)
         {

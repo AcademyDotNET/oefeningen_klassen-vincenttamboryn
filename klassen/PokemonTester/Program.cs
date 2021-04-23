@@ -27,6 +27,7 @@ namespace PokemonTester
             Console.ReadLine();
 
             Pokemon.Battle(myPokemon, enemy);
+            
         }
         static double GiveNumber(string test, string question, double minValue = double.NegativeInfinity, double maxvalue = double.PositiveInfinity)
         {

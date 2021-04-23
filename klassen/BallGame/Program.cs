@@ -42,7 +42,6 @@ namespace BallGame
 
                 player.Update();
                 player.Draw();
-
                 //Check collisions
                 foreach (var item in thisManyBalls)
                 {
@@ -53,7 +52,7 @@ namespace BallGame
                     }
                     foreach (var item2 in thisManyBalls)
                     {
-                        if (item != item2)
+                        if (!(item.Equals(item2)))
                         {
                             if (Ball.CheckHit(item, item2))
                             {

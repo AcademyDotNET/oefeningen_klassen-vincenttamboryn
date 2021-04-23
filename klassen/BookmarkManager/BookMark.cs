@@ -15,5 +15,9 @@ namespace BookmarkManager
         {
             Process.Start(@"C:\Program Files\Google\Chrome\Application\chrome.exe", URL);
         }
+        public override string ToString()
+        {
+            return $"{Naam} ({URL})";
+        }
     }
 }
