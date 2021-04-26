@@ -37,13 +37,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ziekenhuis", "Ziekenhuis\Zi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BallGame", "BallGame\BallGame.csproj", "{46D14A18-16A2-4F41-849B-AEB702FD4943}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Books", "Books\Books.csproj", "{247BCC3E-1985-4073-8AE0-AE3C4C838A8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Books", "Books\Books.csproj", "{247BCC3E-1985-4073-8AE0-AE3C4C838A8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyMoneyMoney", "MoneyMoneyMoney\MoneyMoneyMoney.csproj", "{6B16878C-65AB-4FB8-BE9E-814D94298EE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyMoneyMoney", "MoneyMoneyMoney\MoneyMoneyMoney.csproj", "{6B16878C-65AB-4FB8-BE9E-814D94298EE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeometricFigures", "GeometricFigures\GeometricFigures.csproj", "{5F0B9A03-0FF3-4133-BDCB-CFCD4081889E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeometricFigures", "GeometricFigures\GeometricFigures.csproj", "{5F0B9A03-0FF3-4133-BDCB-CFCD4081889E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DierenTuin", "DierenTuin\DierenTuin.csproj", "{D08A79FE-0D43-4811-934D-391EED404FCE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DierenTuin", "DierenTuin\DierenTuin.csproj", "{D08A79FE-0D43-4811-934D-391EED404FCE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "people", "people\people.csproj", "{8FFC2F1A-1569-4C57-9CE2-1515366E99B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vehicle", "Vehicle\Vehicle.csproj", "{FCE04D8A-5862-4F35-9EAE-E8EB1C04D4E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoliticalSituation", "PoliticalSituation\PoliticalSituation.csproj", "{173093B5-57C2-4D52-83E2-8DBE5404FA89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputerMotherboard", "ComputerMotherboard\ComputerMotherboard.csproj", "{692977F7-46DD-4BCA-B1B6-B350BB6CEA36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectHouse", "ProjectHouse\ProjectHouse.csproj", "{A705DDA8-C284-4F13-8628-A6EDEDFC255E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -135,6 +145,26 @@ Global
 		{D08A79FE-0D43-4811-934D-391EED404FCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D08A79FE-0D43-4811-934D-391EED404FCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D08A79FE-0D43-4811-934D-391EED404FCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FFC2F1A-1569-4C57-9CE2-1515366E99B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FFC2F1A-1569-4C57-9CE2-1515366E99B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FFC2F1A-1569-4C57-9CE2-1515366E99B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FFC2F1A-1569-4C57-9CE2-1515366E99B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCE04D8A-5862-4F35-9EAE-E8EB1C04D4E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCE04D8A-5862-4F35-9EAE-E8EB1C04D4E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCE04D8A-5862-4F35-9EAE-E8EB1C04D4E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCE04D8A-5862-4F35-9EAE-E8EB1C04D4E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{173093B5-57C2-4D52-83E2-8DBE5404FA89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{173093B5-57C2-4D52-83E2-8DBE5404FA89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{173093B5-57C2-4D52-83E2-8DBE5404FA89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{173093B5-57C2-4D52-83E2-8DBE5404FA89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{692977F7-46DD-4BCA-B1B6-B350BB6CEA36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{692977F7-46DD-4BCA-B1B6-B350BB6CEA36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{692977F7-46DD-4BCA-B1B6-B350BB6CEA36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{692977F7-46DD-4BCA-B1B6-B350BB6CEA36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A705DDA8-C284-4F13-8628-A6EDEDFC255E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A705DDA8-C284-4F13-8628-A6EDEDFC255E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A705DDA8-C284-4F13-8628-A6EDEDFC255E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A705DDA8-C284-4F13-8628-A6EDEDFC255E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
