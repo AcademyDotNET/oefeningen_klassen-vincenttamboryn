@@ -29,6 +29,7 @@ namespace BallGame
         {
             Console.SetCursorPosition(x, y);
             Console.Write(" ");
+            //thanks Thomas
             x += vx;
             y += vy;
             if (x >= Console.WindowWidth || x < 0)

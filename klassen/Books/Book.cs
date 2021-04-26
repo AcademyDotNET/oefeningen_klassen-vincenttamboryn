@@ -43,6 +43,7 @@ namespace Books
         }
         public override bool Equals(object obj)
         {
+            //bedankt Michiel
             if (this == null || obj == null || obj.GetType().BaseType != typeof(Book))
             {
                 return false;

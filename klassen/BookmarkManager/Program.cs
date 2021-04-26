@@ -19,7 +19,6 @@ namespace BookmarkManager
                 CheckAndCreateURL(item);
                 Console.WriteLine(item.ToString());
             }
-
             Menu(arrayBookmarks);
         }
         static double GiveNumber(string test, string question, double minValue = double.NegativeInfinity, double maxvalue = double.PositiveInfinity)
