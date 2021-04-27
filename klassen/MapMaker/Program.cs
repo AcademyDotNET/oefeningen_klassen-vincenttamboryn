@@ -6,7 +6,8 @@ namespace MapMaker
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            ZetelElement zetel1 = new ZetelElement();
+            zetel1.Paint();
         }
     }
 }
