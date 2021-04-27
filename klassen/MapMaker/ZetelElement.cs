@@ -8,10 +8,24 @@ namespace MapMaker
 {
     class ZetelElement : FurnitureElement
     {
-        public ZetelElement()
+        public ZetelElement() :base()
         {
             Price = 100;
             DrawChar = '+';
+            UnitSize = 4;
+        }
+        public ZetelElement(Point p, double priceZetel)
+        {
+            Location = p;
+            Price = priceZetel;
+            DrawChar = '+';
+            UnitSize = 4;
+        }
+        public ZetelElement(Point p, double priceElement, char charToDraw)
+        {
+            Location = p;
+            Price = priceElement;
+            DrawChar = charToDraw;
             UnitSize = 4;
         }
         public override void Paint()

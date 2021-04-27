@@ -23,6 +23,12 @@ namespace MapMaker
             location = new Point(1, 1);
             DrawChar = character;
         }
+        public MapObject(Point p,char charToDraw ,double priceElement)
+        {
+            location = p;
+            DrawChar = charToDraw;
+            Price = priceElement;
+        }
         private Point location;
         private double price;
         private char drawChar;
