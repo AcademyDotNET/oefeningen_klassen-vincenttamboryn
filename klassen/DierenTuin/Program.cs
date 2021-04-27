@@ -92,7 +92,7 @@ namespace DierenTuin
         }
         static void Menu(List<Dier>dieren)
         {
-            Console.WriteLine($"What would you like to do?\n\ta. Delete an animal\n\tb. Calculate the avarage weight of all animals\n\tc. Let all the animals speak\n\td. Quit");
+            Console.WriteLine($"What would you like to do?\n\ta. Delete an animal\n\tb. Calculate the avarage weight of all animals\n\tc. Let all the animals speak\n\td. Let certain animals speak\n\te. Quit");
             string input = Console.ReadLine();
             switch (input)
             {
@@ -107,6 +107,9 @@ namespace DierenTuin
                     Console.WriteLine();
                     break;
                 case "d":
+                    LetSomeAnimalsSpeak(dieren);
+                    break;
+                case "e":
                     return;
                 default:
                     break;
@@ -143,6 +146,38 @@ namespace DierenTuin
             foreach (var dier in dieren)
             {
                 dier.Zegt();
+            }
+        }
+        static void LetSomeAnimalsSpeak(List<Dier> dieren) 
+        {
+            string animal;
+            List<string> animalNames = new List<string>();
+
+            do
+            {
+                Console.WriteLine("Which animal do you want to talk to? (one at a time, q to stop entering animals)");
+                animal = Console.ReadLine();
+                if (animal != "q" && animal != "Q")
+                {
+                    animalNames.Add(animal);
+                }
+            } while (animal != "q" && animal != "Q");
+            bool spoken = false;
+            foreach (Dier dier in dieren)
+            {
+                foreach (var name in animalNames)
+                {
+                    if (dier.Naam == name)
+                    {
+                        dier.Zegt();
+                        Console.WriteLine($"{dier.Naam} has spoken");
+                        spoken = true;
+                    }
+                }
+            }
+            if (!spoken)
+            {
+                Console.WriteLine("No such animal was found");
             }
         }
     }

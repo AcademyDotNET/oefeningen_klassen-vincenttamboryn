@@ -353,5 +353,21 @@ namespace PokemonTester
             Console.WriteLine($"{Draws} of those ended in a draw");
             Console.WriteLine($"{HowManyRandomMons} random pokemons were generated");
         }
+        public override bool Equals(object obj)
+        {
+            if (this.GetType() != obj.GetType())
+            {
+                return false;
+            }
+            Pokemon pokemon2 = (Pokemon)obj;
+            if (pokemon2.Level == this.Level)
+            {
+                if (pokemon2.Base_Attack == this.Base_Attack && pokemon2.Base_Defense == this.Base_Defense && pokemon2.Base_HP == this.Base_HP && pokemon2.Base_SpecialAttack == this.Base_SpecialAttack && pokemon2.Base_SpecialDefense == this.Base_SpecialDefense && pokemon2.Base_Speed == this.Base_Speed)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

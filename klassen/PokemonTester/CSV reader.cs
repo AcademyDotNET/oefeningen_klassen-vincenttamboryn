@@ -12,7 +12,8 @@ namespace PokemonTester
         const string delimeter = ",";
         public static string[,] readCsv()
         {
-            StreamReader streamReader = new StreamReader(@"D:\downloads\pokemon.CSV");
+            //StreamReader streamReader = new StreamReader(@"D:\downloads\pokemon.CSV");
+            StreamReader streamReader = new StreamReader(@"C:\Users\vincent\Documents\Pokemon.csv");
             {
                 int csvlenght = 13;
                 int csvhight = 801;
