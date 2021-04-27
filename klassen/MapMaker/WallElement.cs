@@ -14,6 +14,8 @@ namespace MapMaker
         { }
         public WallElement(int x, int y, char character) : base(x, y, character)
         { }
+        public WallElement(Point p, char drawing) : base(p, drawing, 0)
+        { }
         public WallElement(Point p, char drawing, double priceOfWall) : base(p, drawing ,priceOfWall)
         { }
 

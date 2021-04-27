@@ -7,6 +7,9 @@ namespace MapMaker
     {
         static void Main(string[] args)
         {
+            SalonElement salon1 = new SalonElement(new Point(6, 5), 40, 20);
+            salon1.Paint();
+            Console.ReadLine();
             //List<MapObject> allObjects = new List<MapObject>();
             //Menu menu = new Menu();
             //do
@@ -20,8 +23,7 @@ namespace MapMaker
             //        allObjects[i].Paint();
             //    }
             //} while (true);
-            SalonElement salon1 = new SalonElement(new Point(6, 5));
-            salon1.Paint();
+
             //ZetelElement zetel1 = new ZetelElement();
             //zetel1.Paint();
             //List<MapObject> allObjects = new List<MapObject>(); //lang leve polymorfisme
