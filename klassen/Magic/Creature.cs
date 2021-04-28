@@ -10,5 +10,14 @@ namespace Magic
     {
         public int health;
         public int attack;
+        public Creature():base()
+        {
+            health = 5;
+            attack = 2;
+        }
+        public override string ToString()
+        {
+            return "a creature card";
+        }
     }
 }

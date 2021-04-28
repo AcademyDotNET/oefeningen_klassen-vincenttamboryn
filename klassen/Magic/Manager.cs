@@ -8,27 +8,11 @@ namespace Magic
 {
     class Manager
     {
-        public List<Card> cards;
-        public readonly int openingHandSize;
+        public List<Card> cards = new List<Card>();
+        public readonly int openingHandSize = 5;
         public Manager()
         {
-            Random drawRandom = new Random();
-            for (int i = 0; i < openingHandSize; i++)
-            {
-                int draw = drawRandom.Next(0, 3);
-                switch (draw)
-                {
-                    case 0:
-                        cards.Add(new Creature());
-                        break;
-                    case 1:
-                        cards.Add(new Spell());
-                        break;
-                    case 2:
-                        cards.Add(new Land());
-                        break;
-                }
-            }
+            
         }
         public void UseCard(int index)
         {
@@ -50,6 +34,29 @@ namespace Magic
             {
                 Land cardToPlay = (Land)cards[index];
                 cardToPlay.Use();
+            }
+        }
+        public void DrawOpeningHand()
+        {
+            Random drawRandom = new Random();
+            for (int i = 0; i < openingHandSize; i++)
+            {
+                int draw = drawRandom.Next(0, 3);
+                switch (draw)
+                {
+                    case 0:
+                        Card newdraw = new Creature();
+                        cards.Add(newdraw);
+                        break;
+                    case 1:
+                        Card newdraw1 = new Spell();
+                        cards.Add(newdraw1);
+                        break;
+                    case 2:
+                        Card newdraw2 = new Land();
+                        cards.Add(newdraw2);
+                        break;
+                }
             }
         }
     }

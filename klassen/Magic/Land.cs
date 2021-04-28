@@ -10,5 +10,14 @@ namespace Magic
     {
         public int bonusAttack;
         public int costReduction;
+        public Land() : base()
+        {
+            bonusAttack = 1;
+            costReduction = 1;
+        }
+        public override string ToString()
+        {
+            return "a land card";
+        }
     }
 }

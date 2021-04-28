@@ -9,8 +9,13 @@ namespace Magic
     class Card
     {
         public int cost;
+        public Card()
+        {
+            cost = 2;
+        }
         public void Use()
         {
+            Console.WriteLine($"You use this {this.ToString()} card");
             //do something...
         }
     }
