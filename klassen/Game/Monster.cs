@@ -8,11 +8,13 @@ namespace Game
 {
     class Monster : MapElement,IMoveable
     {
-        public Monster() : base()
+        public Monster() : base('M')
+        { }
+        public Monster(Point location) : base('M', location)
         { }
         public Monster(char toDraw) : base(toDraw)
         { }
-        public Monster(char toDraw, Point location) : base(toDraw, location)
+        public Monster(char toDraw, Point location) :base(toDraw, location)
         { }
 
         public void MoveDown()
@@ -20,14 +22,14 @@ namespace Game
             bool canMove = true;
             foreach (var item in MapElement.allElements)
             {
-                if (this.Location.Y-1 == item.Location.Y)
+                if (this.Location.Y+1 == item.Location.Y || this.Location.Y + 1 >= 21)
                 {
                     canMove = false;
                 }
             }
             if (canMove)
             {
-                this.Location.Y -= 1;
+                this.Location.Y += 1;
             }
         }
 
@@ -36,7 +38,7 @@ namespace Game
             bool canMove = true;
             foreach (var item in MapElement.allElements)
             {
-                if (this.Location.X - 1 == item.Location.X)
+                if (this.Location.X - 1 == item.Location.X || this.Location.X -1 <= 0)
                 {
                     canMove = false;
                 }
@@ -52,7 +54,7 @@ namespace Game
             bool canMove = true;
             foreach (var item in MapElement.allElements)
             {
-                if (this.Location.X + 1 == item.Location.X)
+                if (this.Location.X + 1 == item.Location.X || this.Location.X + 1 >= 21)
                 {
                     canMove = false;
                 }
@@ -68,14 +70,14 @@ namespace Game
             bool canMove = true;
             foreach (var item in MapElement.allElements)
             {
-                if (this.Location.Y + 1 == item.Location.Y)
+                if (this.Location.Y - 1 == item.Location.Y || this.Location.Y - 1 <= 0)
                 {
                     canMove = false;
                 }
             }
             if (canMove)
             {
-                this.Location.Y += 1;
+                this.Location.Y -= 1;
             }
         }
         public bool ItemLeft()
@@ -88,6 +90,50 @@ namespace Game
                 }
             }
             return false;
+        }
+        public bool PlayerLeft()
+        {
+            foreach (var item in MapElement.allElements)
+            {
+                if (item is Player)
+                {
+                    if (this.Location.X - 1 == item.Location.X && this.Location.Y == item.Location.Y)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        public void ShootPlayer()
+        {
+            foreach (var item in MapElement.allElements)
+            {
+                if (this.Location.X + 1 == item.Location.X && this.Location.Y == item.Location.Y && item is Player)
+                {
+                    item.Die();
+                }
+            }
+        }
+        public void Move(int input)
+        {
+            switch (input)
+            {
+                case 0:
+                    MoveLeft();
+                    break;
+                case 1:
+                    MoveUp();
+                    break;
+                case 2:
+                    MoveRight();
+                    break;
+                case 3:
+                    MoveDown();
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

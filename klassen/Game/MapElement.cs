@@ -9,7 +9,7 @@ namespace Game
     abstract class MapElement
     {
         public static List<MapElement> allElements = new List<MapElement>();
-        protected int drawChar;
+        protected char drawChar;
 
         public Point Location { get; set; } = new Point();
         public MapElement()

@@ -8,11 +8,9 @@ namespace Game
 {
     class Rock : MapElement
     {
-        public Rock():base()
+        public Rock():base('O')
         { }
-        public Rock(char toDraw) : base(toDraw)
-        { }
-        public Rock(char toDraw, Point location) : base(toDraw, location)
+        public Rock(Point location) : base('O', location)
         { }
     }
 }

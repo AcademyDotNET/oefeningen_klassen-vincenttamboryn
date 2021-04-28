@@ -8,11 +8,9 @@ namespace Game
 {
     class RockDestroyer : Monster,IDestroyer
     {
-        public RockDestroyer() : base()
+        public RockDestroyer() : base('D')
         { }
-        public RockDestroyer(char toDraw) : base(toDraw)
-        { }
-        public RockDestroyer(char toDraw, Point location) : base(toDraw, location)
+        public RockDestroyer(Point location) : base('D', location)
         { }
         public void Shoot()
         {
