@@ -44,7 +44,7 @@ namespace MapMaker
         }
         public void Update()
         {
-            // work in progress
+            // just a 'copy' of constructor
             elementen.Clear();
             elementen.Add(new ZetelElement(new Point(Location.X + 2, Location.Y + 2), 3, '+'));
             elementen.Add(new ZetelElement(new Point(Location.X + 5, Location.Y + 9), 3, '+'));
