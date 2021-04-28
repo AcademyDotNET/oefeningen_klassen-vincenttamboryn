@@ -33,7 +33,6 @@ namespace MapMaker
             }
             for (int i = 0; i < breedte; i++)
             {
-                //add everytime
                 elementen.Add(new WallElement(new Point(Location.X + i, Location.Y),'#'));
                 elementen.Add(new WallElement(new Point(Location.X + i, Location.Y + hoogte), '#'));
             }
@@ -43,9 +42,20 @@ namespace MapMaker
                 elementen.Add(new WallElement(new Point(Location.X + breedte, Location.Y + i), '#'));
             }
         }
+        public void Update()
+        {
+            // work in progress
+            elementen.Clear();
+            elementen.Add(new ZetelElement(new Point(Location.X + 2, Location.Y + 2), 3, '+'));
+            elementen.Add(new ZetelElement(new Point(Location.X + 5, Location.Y + 9), 3, '+'));
+            elementen.Add(new TafelElement(new Point(Location.X + 10, Location.Y + 15), 3, 8));
+
+        }
 
         public override void Paint()
         {
+            //still need to update other objects in elements
+            Update();
             DrawWalls();
             for (int i = 0; i < elementen.Count; i++)
             {
