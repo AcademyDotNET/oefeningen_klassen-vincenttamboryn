@@ -54,7 +54,8 @@ namespace Game
                 Console.Clear();
                 level1.DrawGame();
 
-            } while (!IsGameLost() || !IsGameWon());//reapeat game
+            } while (!IsGameLost() && !IsGameWon());//reapeat game
+
             Console.Clear();
             if (IsGameLost())
             {

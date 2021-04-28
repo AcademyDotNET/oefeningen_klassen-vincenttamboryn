@@ -49,7 +49,7 @@ namespace Game
             bool canMove = true;
             foreach (var item in MapElement.allElements)
             {
-                if (this.Location.X + 1 == item.Location.X && this.Location.Y == item.Location.Y || this.Location.X + 1 >= 21)
+                if (this.Location.X + 1 == item.Location.X && this.Location.Y == item.Location.Y || this.Location.X + 1 >= 22)
                 {
                     canMove = false;
                 }
