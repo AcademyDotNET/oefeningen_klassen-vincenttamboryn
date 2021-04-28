@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MapMaker
 {
-    class SalonElement : MapObject
+    class SalonElement : MapObject, IComposite
     {
         private List<MapObject> elementen = new List<MapObject>();
         public int breedte { get; set; }
@@ -18,19 +18,11 @@ namespace MapMaker
             hoogte = hight;
             elementen.Add(new ZetelElement(new Point(salonLoc.X + 2, salonLoc.Y + 2), 3, '+'));
             elementen.Add(new ZetelElement(new Point(salonLoc.X + 5, salonLoc.Y + 9), 3, '+'));
-            elementen.Add(new TafelElement(new Point(salonLoc.X + 10, salonLoc.Y + 15), 3, 8));
+            elementen.Add(new TafelElement(new Point(salonLoc.X + 15, salonLoc.Y + 2), 3, 8));
             Location = salonLoc;
         }
         private void DrawWalls()
         {
-            for (int i = 0; i < elementen.Count; i++)
-            {
-                if (elementen[i] is WallElement)
-                {
-                    elementen.Remove(elementen[i]);
-                    i--;
-                }
-            }
             for (int i = 0; i < breedte; i++)
             {
                 elementen.Add(new WallElement(new Point(Location.X + i, Location.Y),'#'));
@@ -42,20 +34,18 @@ namespace MapMaker
                 elementen.Add(new WallElement(new Point(Location.X + breedte, Location.Y + i), '#'));
             }
         }
-        public void Update()
+        public void UpdateElements(Point offset)
         {
-            // just a 'copy' of constructor
-            elementen.Clear();
-            elementen.Add(new ZetelElement(new Point(Location.X + 2, Location.Y + 2), 3, '+'));
-            elementen.Add(new ZetelElement(new Point(Location.X + 5, Location.Y + 9), 3, '+'));
-            elementen.Add(new TafelElement(new Point(Location.X + 10, Location.Y + 15), 3, 8));
-
+            for (int i = 0; i < elementen.Count; i++)
+            {
+                Point elementLoc = elementen[i].Location;
+                elementLoc.X += offset.X;
+                elementLoc.Y += offset.Y;
+                elementen[i].Location = elementLoc;
+            }
         }
-
         public override void Paint()
         {
-            //still need to update other objects in elements
-            Update();
             DrawWalls();
             for (int i = 0; i < elementen.Count; i++)
             {

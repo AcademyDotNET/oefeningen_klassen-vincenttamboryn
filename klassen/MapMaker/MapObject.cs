@@ -35,7 +35,24 @@ namespace MapMaker
         public Point Location
         {
             get { return location; }
-            set { location = value; }
+            set 
+            {
+                Point prevloc = location;
+                Point offset = new Point(1, 1);
+                if (location != null)
+                {
+
+                    offset.X = value.X - prevloc.X;
+                    offset.Y = value.Y - prevloc.Y;
+                }
+
+                location = value;
+                if (this is IComposite)
+                {
+                    IComposite obj = this as IComposite;
+                    obj.UpdateElements(offset);
+                }
+            }
         }
         public double Price
         {
