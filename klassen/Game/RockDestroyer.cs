@@ -19,6 +19,7 @@ namespace Game
                 if (this.Location.X - 1 == item.Location.X && this.Location.Y == item.Location.Y)
                 {
                     item.Die();
+                    return;
                 }
             }
         }

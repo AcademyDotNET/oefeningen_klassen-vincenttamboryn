@@ -8,13 +8,14 @@ namespace Game
 {
     class Gameboard
     {
-        public MapElement[,] board;
+        public MapElement[,] board = new MapElement[21,21];
         public Gameboard()
         {
             MapElement.allElements.Add(new Player());
             PlaceXRocks(15);
             PlaceXMonsters(10);
             PlaceXRockDestroyers(5);
+            Update();
         }
         public Gameboard(int rocks, int monsters, int rockDestroyers)
         {
@@ -22,6 +23,7 @@ namespace Game
             PlaceXRocks(rocks);
             PlaceXMonsters(monsters);
             PlaceXRockDestroyers(rockDestroyers);
+            Update();
         }
         static void PlaceXRocks(int thisManyRocks)
         {
@@ -91,6 +93,14 @@ namespace Game
             foreach (var item in MapElement.allElements)
             {
                 item.Draw();
+            }
+        }
+        public void Update()
+        {
+            board = new MapElement[21, 21];
+            foreach (var item in MapElement.allElements)
+            {
+                board[item.Location.Y, item.Location.X] = item;
             }
         }
     }
