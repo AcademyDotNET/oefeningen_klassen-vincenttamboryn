@@ -22,7 +22,7 @@ namespace Game
                     }
 
                     //monster momevent, kill player if player is left of the monster
-                    if (MapElement.allElements[i] is Monster && !(MapElement.allElements[i] is RockDestroyer))
+                    else if (MapElement.allElements[i] is Monster && !(MapElement.allElements[i] is RockDestroyer))
                     {
                         Monster monster = (Monster)MapElement.allElements[i];
                         if (monster.PlayerLeft())
@@ -36,7 +36,7 @@ namespace Game
                     }
 
                     //rockdestroyer movement, kills rocks or players if they are left of the rockdestroyer
-                    if (MapElement.allElements[i] is RockDestroyer)
+                    else if (MapElement.allElements[i] is RockDestroyer)
                     {
                         RockDestroyer destroyer = (RockDestroyer)MapElement.allElements[i];
                         if (destroyer.ItemLeft())
