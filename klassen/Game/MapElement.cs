@@ -10,6 +10,7 @@ namespace Game
     {
         public static List<MapElement> allElements = new List<MapElement>();
         protected char drawChar;
+        protected ConsoleColor drawColor = ConsoleColor.White;
 
         public Point Location { get; set; } = new Point();
         public MapElement()
@@ -32,8 +33,10 @@ namespace Game
         }
         public void Draw()
         {
+            Console.ForegroundColor = drawColor;
             Console.SetCursorPosition(Location.X, Location.Y);
             Console.Write(drawChar);
+            Console.ForegroundColor = ConsoleColor.White;
         }
         public void Die()
         {

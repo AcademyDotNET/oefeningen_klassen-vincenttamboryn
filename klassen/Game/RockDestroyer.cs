@@ -9,9 +9,9 @@ namespace Game
     class RockDestroyer : Monster,IDestroyer
     {
         public RockDestroyer() : base('D')
-        { }
+        { drawColor = ConsoleColor.DarkRed; }
         public RockDestroyer(Point location) : base('D', location)
-        { }
+        { drawColor = ConsoleColor.DarkRed; }
         public void Shoot()
         {
             foreach (var item in MapElement.allElements)

@@ -9,13 +9,13 @@ namespace Game
     class Monster : MapElement,IMoveable
     {
         public Monster() : base('M')
-        { }
+        { drawColor = ConsoleColor.Red; }
         public Monster(Point location) : base('M', location)
-        { }
+        { drawColor = ConsoleColor.Red; }
         public Monster(char toDraw) : base(toDraw)
-        { }
+        { drawColor = ConsoleColor.Red; }
         public Monster(char toDraw, Point location) :base(toDraw, location)
-        { }
+        { drawColor = ConsoleColor.Red; }
 
         public void MoveDown()
         {

@@ -9,9 +9,9 @@ namespace Game
     class Player : MapElement,IMoveable,IDestroyer
     {
         public Player() : base('X', new Point(0,10))
-        { }
+        { drawColor = ConsoleColor.Green; }
         public Player(Point location) : base('X', location)
-        { }
+        { drawColor = ConsoleColor.Green; }
         public void MoveDown()
         {
             bool canMove = true;
