@@ -8,30 +8,34 @@ namespace Game
 {
     class Gameboard
     {
-        public MapElement[,] board = new MapElement[21,21];
+        public MapElement[,] board;
+        public static int BoardSize { get; set; } = 20;
         public Gameboard()
         {
-            MapElement.allElements.Add(new Player());
+            new Player();
             PlaceXRocks(15);
             PlaceXMonsters(10);
             PlaceXRockDestroyers(5);
+            PlaceWallsInit(20);
             Update();
         }
-        public Gameboard(int rocks, int monsters, int rockDestroyers)
+        public Gameboard(int rocks, int monsters, int rockDestroyers, int boardSize = 20)
         {
-            MapElement.allElements.Add(new Player());
-            PlaceXRocks(rocks);
-            PlaceXMonsters(monsters);
-            PlaceXRockDestroyers(rockDestroyers);
+            BoardSize = boardSize;
+            new Player();
+            PlaceXRocks(rocks, BoardSize);
+            PlaceXMonsters(monsters, BoardSize);
+            PlaceXRockDestroyers(rockDestroyers, BoardSize);
+            PlaceWallsInit(BoardSize);
             Update();
         }
-        static void PlaceXRocks(int thisManyRocks)
+        static void PlaceXRocks(int thisManyRocks, int boardSize = 20)
         {
             for (int i = 0; i < thisManyRocks; i++)
             {
                 Random randPlacement = new Random();
-                int randX = randPlacement.Next(1, 20);
-                int randY = randPlacement.Next(0, 20);
+                int randX = randPlacement.Next(1, boardSize);
+                int randY = randPlacement.Next(1, boardSize);
                 bool freeSpace = true;
                 foreach (var item in MapElement.allElements)
                 {
@@ -42,17 +46,17 @@ namespace Game
                 }
                 if (freeSpace)
                 {
-                    MapElement.allElements.Add(new Rock(new Point(randX, randY)));
+                    new Rock(new Point(randX, randY));
                 }
             }
         }
-        static void PlaceXMonsters(int thisManyMonsters)
+        static void PlaceXMonsters(int thisManyMonsters, int boardSize = 20)
         {
             for (int i = 0; i < thisManyMonsters; i++)
             {
                 Random randPlacement = new Random();
-                int randX = randPlacement.Next(1, 20);
-                int randY = randPlacement.Next(0, 20);
+                int randX = randPlacement.Next(1, boardSize);
+                int randY = randPlacement.Next(1, boardSize);
                 bool freeSpace = true;
                 foreach (var item in MapElement.allElements)
                 {
@@ -63,17 +67,17 @@ namespace Game
                 }
                 if (freeSpace)
                 {
-                    MapElement.allElements.Add(new Monster(new Point(randX, randY)));
+                    new Monster(new Point(randX, randY));
                 }
             }
         }
-        static void PlaceXRockDestroyers(int thisManyRockDestroyers)
+        static void PlaceXRockDestroyers(int thisManyRockDestroyers, int boardSize = 20)
         {
             for (int i = 0; i < thisManyRockDestroyers; i++)
             {
                 Random randPlacement = new Random();
-                int randX = randPlacement.Next(1, 20);
-                int randY = randPlacement.Next(0, 20);
+                int randX = randPlacement.Next(1, boardSize);
+                int randY = randPlacement.Next(1, boardSize);
                 bool freeSpace = true;
                 foreach (var item in MapElement.allElements)
                 {
@@ -84,7 +88,25 @@ namespace Game
                 }
                 if (freeSpace)
                 {
-                    MapElement.allElements.Add(new RockDestroyer(new Point(randX, randY)));
+                   new RockDestroyer(new Point(randX, randY));
+                }
+            }
+        }
+        static void PlaceWallsInit(int boardSize)
+        {
+            for (int i = 0; i < boardSize + 1; i++)
+            {
+                if (i != 10)
+                {
+                    new Rock(new Point(0, i));
+                    new Rock(new Point(i, 0));
+                    new Rock(new Point(boardSize, i));
+                    new Rock(new Point(i, boardSize));
+                }
+                else
+                {
+                    new Rock(new Point(i, 0));
+                    new Rock(new Point(i, boardSize));
                 }
             }
         }
@@ -97,11 +119,13 @@ namespace Game
         }
         public void Update()
         {
-            board = new MapElement[21, 21];
-            foreach (var item in MapElement.allElements)
-            {
-                board[item.Location.Y, item.Location.X] = item;
-            }
+            //isn't used
+
+            //board = new MapElement[BoardSize, BoardSize];
+            //foreach (var item in MapElement.allElements)
+            //{
+            //    board[item.Location.Y, item.Location.X] = item;
+            //}
         }
     }
 }

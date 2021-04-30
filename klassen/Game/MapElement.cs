@@ -31,14 +31,14 @@ namespace Game
             Location = location;
             allElements.Add(this);
         }
-        public void Draw()
+        public virtual void Draw()
         {
             Console.ForegroundColor = drawColor;
             Console.SetCursorPosition(Location.X, Location.Y);
             Console.Write(drawChar);
             Console.ForegroundColor = ConsoleColor.White;
         }
-        public void Die()
+        public virtual void Die()
         {
             allElements.Remove(this);
         }

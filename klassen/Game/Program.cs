@@ -8,8 +8,10 @@ namespace Game
         static void Main(string[] args)
         {
             Random rDirection = new Random();
-            Gameboard level1 = new Gameboard(5,5,5);
+            Gameboard level1 = new Gameboard(10,10,10,25);
             level1.DrawGame();
+            int score = 0;
+
             do
             {
                 for (int i = 0; i < MapElement.allElements.Count; i++)
@@ -19,20 +21,10 @@ namespace Game
                     {
                         Player player = (Player)MapElement.allElements[i];
                         player.Move(Console.ReadKey());
-                    }
-
-                    //monster momevent, kill player if player is left of the monster
-                    else if (MapElement.allElements[i] is Monster && !(MapElement.allElements[i] is RockDestroyer))
-                    {
-                        Monster monster = (Monster)MapElement.allElements[i];
-                        if (monster.PlayerLeft())
-                        {
-                            monster.ShootPlayer();
-                        }
-                        else
-                        {
-                            monster.Move(rDirection.Next(0,4));
-                        }
+                        score = player.Score;
+                        //clear console, draw updated level
+                        Console.Clear();
+                        level1.DrawGame();
                     }
 
                     //rockdestroyer movement, kills rocks or players if they are left of the rockdestroyer
@@ -48,6 +40,20 @@ namespace Game
                             destroyer.Move(rDirection.Next(0, 4));
                         }
                     }
+
+                    //monster momevent, kill player if player is left of the monster
+                    else if (MapElement.allElements[i] is Monster && !(MapElement.allElements[i] is RockDestroyer))
+                    {
+                        Monster monster = (Monster)MapElement.allElements[i];
+                        if (monster.PlayerLeft())
+                        {
+                            monster.ShootPlayer();
+                        }
+                        else
+                        {
+                            monster.Move(rDirection.Next(0,4));
+                        }
+                    }
                 }
 
                 //clear console, draw updated level
@@ -56,16 +62,22 @@ namespace Game
 
             } while (!IsGameLost() && !IsGameWon());//reapeat game
 
+            //how did the game end
             Console.Clear();
             if (IsGameLost())
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("You Lost!");
+                Console.WriteLine($"Your final score was {score}");
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("You Won!");
+                Console.WriteLine($"Your final score was {score}");
             }
         }
+
         public static bool IsGameLost()
         {
             bool condition = true;
@@ -83,12 +95,13 @@ namespace Game
             bool condition = false;
             foreach (var item in MapElement.allElements)
             {
-                if (item is Player && item.Location.X >=20)
+                if (item is Player && item.Location.X >=Gameboard.BoardSize)
                 {
                     condition = true;
                 }
             }
             return condition;
         }
+
     }
 }
