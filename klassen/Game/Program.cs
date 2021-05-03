@@ -102,6 +102,5 @@ namespace Game
             }
             return condition;
         }
-
     }
 }

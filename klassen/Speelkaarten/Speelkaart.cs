@@ -26,6 +26,29 @@ namespace Speelkaarten
             get { return _Suits; }
             set { _Suits = value; }
         }
+        public override string ToString()
+        {
+            if (Number == 1)
+            {
+                return $"Ace of {Suits}";
+            }
+            else if (Number == 11)
+            {
+                return $"Jack of {Suits}";
+            }
+            else if (Number == 12)
+            {
+                return $"Queen of {Suits}";
+            }
+            else if (Number == 13)
+            {
+                return $"King of {Suits}";
+            }
+            else
+            {
+                return $"{Number} of {Suits}";
+            }
 
+        }
     }
 }
