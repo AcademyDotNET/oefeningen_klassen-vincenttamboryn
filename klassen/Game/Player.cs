@@ -224,10 +224,10 @@ namespace Game
                     drawColor = ConsoleColor.Green;
                     break;
                 case 2:
-                    drawColor = ConsoleColor.DarkYellow;
+                    drawColor = ConsoleColor.Yellow;
                     break;
                 case 1:
-                    drawColor = ConsoleColor.Yellow;
+                    drawColor = ConsoleColor.DarkYellow;
                     break;
                 default:
                     base.Die();
