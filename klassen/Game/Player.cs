@@ -286,7 +286,7 @@ namespace Game
                     Console.ForegroundColor = ConsoleColor.Red;
                     break;
             }
-            Console.Write($"\tLongrange Shots: {LongRangeShots}");
+            Console.Write($"\tLong-Range Shots: {LongRangeShots}");
 
             Console.ForegroundColor = drawColor;
             Console.SetCursorPosition(Location.X * 2, Location.Y);

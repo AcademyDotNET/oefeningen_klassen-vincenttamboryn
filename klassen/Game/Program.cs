@@ -7,7 +7,7 @@ namespace Game
     {
         /*
          * to do
-         * better draw function (no more console. clear)
+         * better draw function (no more console.clear)
          * new enemy, following enemy?
          * menu?
          */
@@ -28,10 +28,6 @@ namespace Game
                         Player player = MapElement.allElements[i] as Player;
                         player.Move(Console.ReadKey());
                         score = player.Score;
-                        //clear console, draw updated level
-                        //ClearGameBoard(MapElement.allElements);
-                        Console.Clear();
-                        level1.DrawGame();
                     }
 
                     //rockdestroyer movement, kills rocks or players if they are left of the rockdestroyer
@@ -64,7 +60,7 @@ namespace Game
                 }
 
                 //clear console, draw updated level
-                //ClearGameBoard(MapElement.allElements);
+                //ClearGameBoard();
                 Console.Clear();
                 level1.DrawGame();
 
@@ -110,13 +106,12 @@ namespace Game
             }
             return condition;
         }
-        public static void ClearGameBoard(List<MapElement> elements)
+        public static void ClearGameBoard()
         {//doesn't work
-            foreach (var item in elements)
+            foreach (var item in MapElement.allElements)
             {
-                Console.ForegroundColor = ConsoleColor.Black;
                 Console.SetCursorPosition(item.Location.X * 2, item.Location.Y);
-                Console.WriteLine("_");
+                Console.WriteLine(" ");
             }
         }
     }
