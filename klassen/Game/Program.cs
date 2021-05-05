@@ -5,10 +5,16 @@ namespace Game
 {
     class Program
     {
+        /*
+         * to do
+         * better draw function (no more console. clear)
+         * new enemy, following enemy?
+         * menu?
+         */
         static void Main(string[] args)
         {
             Random rDirection = new Random();
-            Gameboard level1 = new Gameboard(10,10,10,25);
+            Gameboard level1 = new Gameboard(35,20,10,25);
             level1.DrawGame();
             int score = 0;
 
@@ -19,10 +25,11 @@ namespace Game
                     //player movement
                     if (MapElement.allElements[i] is Player)
                     {
-                        Player player = (Player)MapElement.allElements[i];
+                        Player player = MapElement.allElements[i] as Player;
                         player.Move(Console.ReadKey());
                         score = player.Score;
                         //clear console, draw updated level
+                        //ClearGameBoard(MapElement.allElements);
                         Console.Clear();
                         level1.DrawGame();
                     }
@@ -30,7 +37,7 @@ namespace Game
                     //rockdestroyer movement, kills rocks or players if they are left of the rockdestroyer
                     else if (MapElement.allElements[i] is RockDestroyer)
                     {
-                        RockDestroyer destroyer = (RockDestroyer)MapElement.allElements[i];
+                        RockDestroyer destroyer = MapElement.allElements[i] as RockDestroyer;
                         if (destroyer.ItemLeft())
                         {
                             destroyer.Shoot();
@@ -44,7 +51,7 @@ namespace Game
                     //monster momevent, kill player if player is left of the monster
                     else if (MapElement.allElements[i] is Monster && !(MapElement.allElements[i] is RockDestroyer))
                     {
-                        Monster monster = (Monster)MapElement.allElements[i];
+                        Monster monster = MapElement.allElements[i] as Monster;
                         if (monster.PlayerLeft())
                         {
                             monster.ShootPlayer();
@@ -57,6 +64,7 @@ namespace Game
                 }
 
                 //clear console, draw updated level
+                //ClearGameBoard(MapElement.allElements);
                 Console.Clear();
                 level1.DrawGame();
 
@@ -101,6 +109,15 @@ namespace Game
                 }
             }
             return condition;
+        }
+        public static void ClearGameBoard(List<MapElement> elements)
+        {//doesn't work
+            foreach (var item in elements)
+            {
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.SetCursorPosition(item.Location.X * 2, item.Location.Y);
+                Console.WriteLine("_");
+            }
         }
     }
 }

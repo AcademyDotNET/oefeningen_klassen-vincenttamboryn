@@ -34,8 +34,16 @@ namespace Game
         public virtual void Draw()
         {
             Console.ForegroundColor = drawColor;
-            Console.SetCursorPosition(Location.X, Location.Y);
-            Console.Write(drawChar);
+            if (Location.X != 0)
+            {
+                Console.SetCursorPosition(Location.X * 2, Location.Y);
+                Console.Write(drawChar);
+            }
+            else
+            {
+                Console.SetCursorPosition(Location.X, Location.Y);
+                Console.Write(drawChar);
+            }
             Console.ForegroundColor = ConsoleColor.White;
         }
         public virtual void Die()
