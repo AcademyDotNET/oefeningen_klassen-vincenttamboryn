@@ -89,6 +89,10 @@ namespace Game
         }
         public void Move(ConsoleKeyInfo input)
         {
+            while (Console.KeyAvailable)
+            {
+                Console.ReadKey(true);
+            }
             switch (input.Key)
             {
                 case ConsoleKey.Spacebar:
