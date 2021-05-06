@@ -7,8 +7,16 @@ namespace BookmarkManager
     {
         static void Main(string[] args)
         {
-
-            int numberOfBookmarks = Convert.ToInt32(GiveNumber("int","How many bookmarks would you like to make?",0));
+            int numberOfBookmarks = 0;
+            try
+            {
+                numberOfBookmarks = Convert.ToInt32(GiveNumber("int", "How many bookmarks would you like to make?", 0));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                throw;
+            }
             HiddenBookmark[] arrayBookmarks = new HiddenBookmark[numberOfBookmarks];
             for (int i = 0; i < numberOfBookmarks; i++)
             {
@@ -106,8 +114,14 @@ namespace BookmarkManager
             }
             int input = Convert.ToInt32(GiveNumber("int", "", 1, websites.Length+1));
             Console.WriteLine($"Now opening website {websites[input-1].Naam}");
-            websites[input-1].OpenSite();
+            try
+            {
+                websites[input - 1].OpenSite();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
-
     }
 }

@@ -54,7 +54,19 @@ namespace StudentKlasse
         static void ChangeStudents(List<Student> studentenlijst)
         {
             Console.WriteLine($"Which student would you like to change?\n1. {studentenlijst[0].Naam} \n2. {studentenlijst[1].Naam} \n3. {studentenlijst[2].Naam} \n4. {studentenlijst[3].Naam}\n5. {studentenlijst[4].Naam}\n6. No student");
-            string input = Console.ReadLine();
+            string input = "";
+            try
+            {
+                input = Console.ReadLine();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                input = "a";
+            }
             switch (input)
             {
                 case "1":
@@ -83,12 +95,28 @@ namespace StudentKlasse
         {
             Console.WriteLine("What would you like the name of this student to be?");
             student.Naam = Console.ReadLine();
-            student.Leeftijd = Convert.ToInt32(GiveNumber("int","How old is this student?",0,150));
-            student.PuntenCommunicatie = Convert.ToInt32(GiveNumber("int", "Marks on Communitcation?", 0, 100));
-            student.PuntenProgrammingPrinciples = Convert.ToInt32(GiveNumber("int", "Marks on Programming Principles?", 0, 100));
-            student.PuntenWebTech = Convert.ToInt32(GiveNumber("int", "Marks on Web Technologies?", 0, 100));
-            int whichClass = Convert.ToInt32(GiveNumber("int", $"In which class is {student.Naam}?\n1 for EA1, 2 for EA2, 3 for EA3, 4 for EA4, 5 for EA5, 6 for EA6", 1, 6));
-            student.Klas = (Student.Klassen)whichClass;
+            try
+            {
+                student.Leeftijd = Convert.ToInt32(GiveNumber("int", "How old is this student?", 0, 150));
+                student.PuntenCommunicatie = Convert.ToInt32(GiveNumber("int", "Marks on Communitcation?", 0, 100));
+                student.PuntenProgrammingPrinciples = Convert.ToInt32(GiveNumber("int", "Marks on Programming Principles?", 0, 100));
+                student.PuntenWebTech = Convert.ToInt32(GiveNumber("int", "Marks on Web Technologies?", 0, 100));
+                int whichClass = Convert.ToInt32(GiveNumber("int", $"In which class is {student.Naam}?\n1 for EA1, 2 for EA2, 3 for EA3, 4 for EA4, 5 for EA5, 6 for EA6", 1, 6));
+                student.Klas = (Student.Klassen)whichClass;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                student.Leeftijd = 16;
+                student.PuntenCommunicatie = 60;
+                student.PuntenProgrammingPrinciples = 60;
+                student.PuntenWebTech = 60;
+                student.Klas = Student.Klassen.EA1;
+            }
+            
         }
         static double GiveNumber(string test, string question, double minValue = double.NegativeInfinity, double maxvalue = double.PositiveInfinity)
         {

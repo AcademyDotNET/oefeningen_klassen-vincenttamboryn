@@ -90,7 +90,7 @@ namespace PokemonTester
         }
         static Pokemon[] AllPokemonsInitialiser()
         {
-            string[,] stats = CSV_reader.readCsv();
+            string[,] stats = CSV_reader.readCsvWeb();
             Pokemon[] arrayOfPokemons = new Pokemon[stats.GetLength(0) - 1];
             for (int i = 0; i < arrayOfPokemons.Length; i++)
             {

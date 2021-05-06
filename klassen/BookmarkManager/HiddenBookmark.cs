@@ -11,7 +11,8 @@ namespace BookmarkManager
     {
         public override void OpenSite()
         {
-            Process.Start(@"C:\Program Files\Google\Chrome\Application\chrome.exe", "-incognito " + URL);
+            //Process.Start(@"C:\Program Files\Google\Chrome\Application\chrome.exe", "-incognito " + URL);
+            Process.Start(@"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe", URL);
         }
         public override string ToString()
         {

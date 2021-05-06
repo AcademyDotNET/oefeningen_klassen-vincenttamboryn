@@ -236,6 +236,7 @@ namespace Game
         }
         public override void Draw()
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
             Console.ForegroundColor = drawColor;
             Console.SetCursorPosition(2, Gameboard.BoardSize + 2);
             Console.Write("Lives: ");

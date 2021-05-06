@@ -7,11 +7,6 @@ namespace Speelkaarten
         static void Main(string[] args)
         {
             GeschudPakKaarten pak = new GeschudPakKaarten();
-            //int thisManyPops = pak.GeschudPak.Count;
-            //for (int i = 0; i < thisManyPops; i++)
-            //{
-            //    Console.WriteLine(pak.GeschudPak.Pop());
-            //}
             BlackJack(pak);
         }
         static void BlackJack(GeschudPakKaarten pak)
