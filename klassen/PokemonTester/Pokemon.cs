@@ -256,7 +256,6 @@ namespace PokemonTester
 
             // Power of a used move (moves not inplemented so base 80) & randomness of damage
             int power = 80;
-            int randomnessLowerBound = 85;
 
             // attack sequance, fastest pokemon attacks first, then slowest, both attack with with their highest attack stat, minimum 2 damage, until one has 0 hp. 
             do
@@ -265,22 +264,22 @@ namespace PokemonTester
                 {
                     if (poke1.Full_Attack > poke1.Full_SpecialAttack)
                     {
-                        health2 -= DamageCalculations(poke1,poke2,"normal",80);
+                        health2 -= DamageCalculations(poke1,poke2,"normal", power);
                         Console.WriteLine($"{poke2.Name} has {Math.Max(health2, 0)} HP left\n");
                     }
                     else
                     {
-                        health2 -= DamageCalculations(poke1, poke2, "special", 80);
+                        health2 -= DamageCalculations(poke1, poke2, "special", power);
                         Console.WriteLine($"{poke2.Name} has {Math.Max(health2, 0)} HP left\n");
                     }
                     if (poke2.Full_Attack > poke2.Full_SpecialAttack)
                     {
-                        health1 -= DamageCalculations(poke2, poke1, "normal", 80);
+                        health1 -= DamageCalculations(poke2, poke1, "normal", power);
                         Console.WriteLine($"{poke1.Name} has {Math.Max(health1, 0)} HP left\n");
                     }
                     else
                     {
-                        health1 -= DamageCalculations(poke2, poke1, "special", 80);
+                        health1 -= DamageCalculations(poke2, poke1, "special", power);
                         Console.WriteLine($"{poke1.Name} has {Math.Max(health1, 0)} HP left\n");
                     }
                 }
@@ -288,22 +287,22 @@ namespace PokemonTester
                 {
                     if (poke2.Full_Attack > poke2.Full_SpecialAttack)
                     {
-                        health1 -= DamageCalculations(poke2, poke1, "normal", 80);
+                        health1 -= DamageCalculations(poke2, poke1, "normal", power);
                         Console.WriteLine($"{poke1.Name} has {Math.Max(health1, 0)} HP left\n");
                     }
                     else
                     {
-                        health1 -= DamageCalculations(poke2, poke1, "special", 80);
+                        health1 -= DamageCalculations(poke2, poke1, "special", power);
                         Console.WriteLine($"{poke1.Name} has {Math.Max(health1, 0)} HP left\n");
                     }
                     if (poke1.Full_Attack > poke1.Full_SpecialAttack)
                     {
-                        health2 -= DamageCalculations(poke1, poke2, "normal", 80);
+                        health2 -= DamageCalculations(poke1, poke2, "normal", power);
                         Console.WriteLine($"{poke2.Name} has {Math.Max(health2, 0)} HP left\n");
                     }
                     else
                     {
-                        health2 -= DamageCalculations(poke1, poke2, "special", 80);
+                        health2 -= DamageCalculations(poke1, poke2, "special", power);
                         Console.WriteLine($"{poke2.Name} has {Math.Max(health2, 0)} HP left\n");
                     }
                 }
