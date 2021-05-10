@@ -8,8 +8,8 @@ namespace PokemonTester
 {
     class Battler:IMatch
     {
-        public Pokemon myPokemon;
-        public Pokemon enemy;
+        public IPocketMonster myPokemon;
+        public IPocketMonster enemy;
         static IOutput output;
         private static int draws = 0;
         private static int numberOfBattles = 0;
@@ -35,7 +35,7 @@ namespace PokemonTester
             output = logger;
             Pokemon.NoLevelingAllowed = false;
             Random rNG = new Random();
-            Pokemon[] pokedex = AllPokemonsInitialiser();
+            IPocketMonster[] pokedex = AllPokemonsInitialiser();
 
             myPokemon = ChooseAPokemon(pokedex);
             enemy = pokedex[rNG.Next(0, pokedex.Length)];
@@ -52,17 +52,17 @@ namespace PokemonTester
             Console.ReadLine();
             Battle(myPokemon, enemy);
         }
-        private Pokemon[] AllPokemonsInitialiser()
+        private IPocketMonster[] AllPokemonsInitialiser()
         {
             string[,] stats = CSV_reader.readCsvWeb();
-            Pokemon[] arrayOfPokemons = new Pokemon[stats.GetLength(0) - 1];
+            IPocketMonster[] arrayOfPokemons = new Pokemon[stats.GetLength(0) - 1];
             for (int i = 0; i < arrayOfPokemons.Length; i++)
             {
                 arrayOfPokemons[i] = new Pokemon(stats[i + 1, 1], Convert.ToInt32(stats[i + 1, 5]), Convert.ToInt32(stats[i + 1, 6]), Convert.ToInt32(stats[i + 1, 7]), Convert.ToInt32(stats[i + 1, 8]), Convert.ToInt32(stats[i + 1, 9]), Convert.ToInt32(stats[i + 1, 10]));
             }
             return arrayOfPokemons;
         }
-        private Pokemon ChooseAPokemon(Pokemon[] dex)
+        private IPocketMonster ChooseAPokemon(IPocketMonster[] dex)
         {
             //allows the user to choose a pokemon, checks if the input is the name of a pokemon.
             //repeats this loop untill the input corresponds to a pokemon.
@@ -99,7 +99,7 @@ namespace PokemonTester
             } while (condition);
             return dex[index];
         }
-        private void ListAllPokemon(Pokemon[] dex)
+        private void ListAllPokemon(IPocketMonster[] dex)
         {
             Console.WriteLine();
             for (int i = 0; i < dex.Length; i++)
@@ -108,7 +108,7 @@ namespace PokemonTester
             }
             Console.WriteLine();
         }
-        public static int Battle(Pokemon poke1, Pokemon poke2)
+        public static int Battle(IPocketMonster poke1, IPocketMonster poke2)
         {
             NumberOfBattles++;
             //check if a pokemon is null
@@ -202,12 +202,12 @@ namespace PokemonTester
                 return Won(poke1, 1);
             }
         }
-        static int Won(Pokemon poke, int number)
+        static int Won(IPocketMonster poke, int number)
         {
             output.Log($"{poke.Name} has won this battle!");
             return number;
         }
-        static int DamageCalculations(Pokemon attackingPoke, Pokemon defendingPoke, string normalSpecial, int power)
+        static int DamageCalculations(IPocketMonster attackingPoke, IPocketMonster defendingPoke, string normalSpecial, int power)
         {
             //calculates the damage a pokemon would take and returns it. Randomness makes it so damage isn't predetermined
 
