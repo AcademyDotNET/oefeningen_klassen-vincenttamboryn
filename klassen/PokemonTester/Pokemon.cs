@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PokemonTester
 {
-    class Pokemon
+    class Pokemon:IPocketMonster
     {
         private int hP_Base;
         private int attack_Base;
@@ -15,10 +15,9 @@ namespace PokemonTester
         private int specialDefense_Base;
         private int speed_Base;
         private int level = 1;
-        private static int numberOfBattles = 0;
-        private static int levelups = 0;
-        private static int draws = 0;
-        private static int howManyRandomMons = 0;
+        public static int levelups = 0;
+        public static int howManyRandomMons = 0;
+        static IOutput output = new ConsoleLogger();
         public Pokemon()
         {
             Base_HP = 10;
@@ -48,23 +47,7 @@ namespace PokemonTester
             get { return levelups; }
             private set { levelups = value; }
         }
-        public static int Draws
-        {
-            get { return draws; }
-            private set { draws = value; }
-        }
 
-        public static int NumberOfBattles
-        {
-            get
-            {
-                return numberOfBattles;
-            }
-            private set
-            {
-                numberOfBattles = value;
-            }
-        }
         public static bool NoLevelingAllowed { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
@@ -195,7 +178,7 @@ namespace PokemonTester
         {
             if (NoLevelingAllowed)
             {
-                Console.WriteLine("No leveling allowed! No levels were gained!");
+                output.Log("No leveling allowed! No levels were gained!");
             }
             else
             {
@@ -205,7 +188,7 @@ namespace PokemonTester
         }
         public void ShowInfo()
         {
-            Console.WriteLine($"{Name} (level {Level})\nBase stats:\n\t * Health = {Base_HP}\n\t * Attack = {Base_Attack}\n\t * Defense = {Base_Defense}\n\t" +
+            output.Log($"{Name} (level {Level})\nBase stats:\n\t * Health = {Base_HP}\n\t * Attack = {Base_Attack}\n\t * Defense = {Base_Defense}\n\t" +
                 $" * Special Attack = {Base_SpecialAttack}\n\t * Special Defense = {Base_SpecialDefense}\n\t * Speed = {Base_Speed}\n\n\t * Total = {Total}\n\t * Avarage = {Average}" +
                 $"\nFull stats:\n\t * Health = {Full_HP}\n\t * Attack = {Full_Attack}\n\t * Defense = {Full_Defense}\n\t" +
                 $" * Special Attack = {Full_SpecialAttack}\n\t * Special Defense = {Full_SpecialDefense}\n\t * Speed = {Full_Speed}");
@@ -216,7 +199,7 @@ namespace PokemonTester
 
             Pokemon pokemon2 = new Pokemon();
             Random randomGenerator = new Random();
-            Console.WriteLine("what is the name of this pokemon");
+            output.Log("what is the name of this pokemon");
             pokemon2.Name = Console.ReadLine();
             pokemon2.Base_HP = randomGenerator.Next(10, 255);
             pokemon2.Base_Attack = randomGenerator.Next(10, Math.Max(Math.Min(650 - pokemon2.Base_HP, 255), 20));
@@ -228,129 +211,13 @@ namespace PokemonTester
             HowManyRandomMons++;
             return pokemon2;
         }
-        public static int Battle(Pokemon poke1, Pokemon poke2)
-        {
-            NumberOfBattles++;
-            //check if a pokemon is null
-            if (poke1 == null && poke2 == null)
-            {
-                Console.WriteLine("no winner");
-                return 0;
-            }
-            if (poke1 == null)
-            {
-                Console.WriteLine($"{poke2.Name} has won this battle!");
-                return 2;
-            }
-            if (poke2 == null)
-            {
-                Console.WriteLine($"{poke1.Name} has won this battle!");
-                return 1;
-            }
-
-            // initialise changeable values for the hp of both pokemon
-            int health1 = poke1.Full_HP;
-            int health2 = poke2.Full_HP;
-
-            Random rNG = new Random();
-
-            // Power of a used move (moves not inplemented so base 80) & randomness of damage
-            int power = 80;
-
-            // attack sequance, fastest pokemon attacks first, then slowest, both attack with with their highest attack stat, minimum 2 damage, until one has 0 hp. 
-            do
-            {
-                if (poke1.Full_Speed > poke2.Full_Speed)
-                {
-                    if (poke1.Full_Attack > poke1.Full_SpecialAttack)
-                    {
-                        health2 -= DamageCalculations(poke1,poke2,"normal", power);
-                        Console.WriteLine($"{poke2.Name} has {Math.Max(health2, 0)} HP left\n");
-                    }
-                    else
-                    {
-                        health2 -= DamageCalculations(poke1, poke2, "special", power);
-                        Console.WriteLine($"{poke2.Name} has {Math.Max(health2, 0)} HP left\n");
-                    }
-                    if (poke2.Full_Attack > poke2.Full_SpecialAttack)
-                    {
-                        health1 -= DamageCalculations(poke2, poke1, "normal", power);
-                        Console.WriteLine($"{poke1.Name} has {Math.Max(health1, 0)} HP left\n");
-                    }
-                    else
-                    {
-                        health1 -= DamageCalculations(poke2, poke1, "special", power);
-                        Console.WriteLine($"{poke1.Name} has {Math.Max(health1, 0)} HP left\n");
-                    }
-                }
-                else
-                {
-                    if (poke2.Full_Attack > poke2.Full_SpecialAttack)
-                    {
-                        health1 -= DamageCalculations(poke2, poke1, "normal", power);
-                        Console.WriteLine($"{poke1.Name} has {Math.Max(health1, 0)} HP left\n");
-                    }
-                    else
-                    {
-                        health1 -= DamageCalculations(poke2, poke1, "special", power);
-                        Console.WriteLine($"{poke1.Name} has {Math.Max(health1, 0)} HP left\n");
-                    }
-                    if (poke1.Full_Attack > poke1.Full_SpecialAttack)
-                    {
-                        health2 -= DamageCalculations(poke1, poke2, "normal", power);
-                        Console.WriteLine($"{poke2.Name} has {Math.Max(health2, 0)} HP left\n");
-                    }
-                    else
-                    {
-                        health2 -= DamageCalculations(poke1, poke2, "special", power);
-                        Console.WriteLine($"{poke2.Name} has {Math.Max(health2, 0)} HP left\n");
-                    }
-                }
-            } while (health1 > 0 && health2 > 0);
-
-            //who won
-            if (health1 <= 0 && health2 <= 0)
-            {
-                Draws++;
-                Console.WriteLine("it's a draw");
-                return 0;
-            }
-            else if (health1 <= 0)
-            {
-                Console.WriteLine($"{poke2.Name} has won this battle!");
-                return 2;
-            }
-            else
-            {
-                Console.WriteLine($"{poke1.Name} has won this battle!");
-                return 1;
-            }
-        }
-        static int DamageCalculations(Pokemon attackingPoke, Pokemon defendingPoke, string normalSpecial,int power)
-        {
-            //calculates the damage a pokemon would take and returns it. Randomness makes it so damage isn't predetermined
-
-            Random rNG = new Random();
-            int randomnessLowerBound = 85;
-            int hpLost;
-            if (normalSpecial == "special")
-            {
-                hpLost = Convert.ToInt32(Convert.ToDouble(((2 * attackingPoke.Level / 5) * (attackingPoke.Full_SpecialAttack / defendingPoke.Full_SpecialDefense) * power / 50) + 2) * (Convert.ToDouble(rNG.Next(randomnessLowerBound, 101)) / 100.0));
-                Console.WriteLine($"{attackingPoke.Name} hits {defendingPoke.Name} with a special attack!");
-            }
-            else
-            {
-                hpLost = Convert.ToInt32(Convert.ToDouble(((2 * attackingPoke.Level / 5) * (attackingPoke.Full_Attack / defendingPoke.Full_Defense) * power / 50) + 2) * (Convert.ToDouble(rNG.Next(randomnessLowerBound, 101)) / 100.0));
-                Console.WriteLine($"{attackingPoke.Name} hits {defendingPoke.Name} with a regular attack!");
-            }
-            return hpLost;
-        }
+        
         public static void Info()
         {
-            Console.WriteLine($"\nA total of {Levelups} levels have been gained");
-            Console.WriteLine($"There have been a total of {NumberOfBattles} battles");
-            Console.WriteLine($"{Draws} of those ended in a draw");
-            Console.WriteLine($"{HowManyRandomMons} random pokemons were generated");
+            output.Log($"\nA total of {Levelups} levels have been gained");
+            output.Log($"There have been a total of {Battler.NumberOfBattles} battles");
+            output.Log($"{Battler.Draws} of those ended in a draw");
+            output.Log($"{HowManyRandomMons} random pokemons were generated");
         }
         public override bool Equals(object obj)
         {

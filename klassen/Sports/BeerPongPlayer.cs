@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Sports
 {
-    class BeerPongPlayer
+    public enum Beers { Jupiler, Stella, Cara, Hopfil, Buval, Duvel, Crystal }
+    class BeerPongPlayer:ISpeler
     {
-        public enum Beers { Jupiler, Stella, Cara, Hopfil, Buval, Duvel, Crystal }
         private string name;
         private double accuracy;
         private bool isDrunk;
@@ -72,8 +72,8 @@ namespace Sports
                 }
             }
         }
-
-        public void StelIn(string name, Beers beer, double accuracy, bool isDrunk, string team)
+        static IOutput output = new ConsoleLogger();
+        public BeerPongPlayer(string name, Beers beer, double accuracy, bool isDrunk, string team)
         {
             Name = name;
             FavouriteBeer = beer;
@@ -85,48 +85,59 @@ namespace Sports
         {
             Random myGen = new Random();
             double rNG = myGen.Next(1, 101);
+            System.Threading.Thread.Sleep(1000);
+            output.Log($"{name} throws the ball");
+            System.Threading.Thread.Sleep(1000);
             if (accuracy >= rNG)
             {
-                System.Threading.Thread.Sleep(1000);
-                Console.WriteLine($"{name} throws the ball");
-                System.Threading.Thread.Sleep(1000);
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Score!");
-                Console.ForegroundColor = ConsoleColor.White;
+                Score(true);
             }
             else
             {
-                System.Threading.Thread.Sleep(1000);
-                Console.WriteLine($"{name} throws the ball");
-                System.Threading.Thread.Sleep(1000);
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"{name} missed!");
-                Console.ForegroundColor = ConsoleColor.White;
+                Score(false);
             }
         }
-        public void drinkBeer()
+        private void Score(bool scored)
+        {   
+            if (scored)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                output.Log("Score!");
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                output.Log($"{name} missed!");
+            }
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+        public void DrinkBeer()
         {
             beersDrunk++;
+            output.Log($"{name} drinks a beer. {name} has drunk {beersDrunk} beers.");
+            BecomesDrunk();
+        }
+        private void BecomesDrunk()
+        {
             Random myGen = new Random();
-            int rNG = myGen.Next(0, Math.Max(1, 12-beersDrunk));
+            int rNG = myGen.Next(0, Math.Max(1, 12 - beersDrunk));
             System.Threading.Thread.Sleep(500);
             if (rNG < 2 && beersDrunk > 3)
             {
                 isDrunk = true;
             }
-            Console.WriteLine($"{name} drinks a beer. {name} has drunk {beersDrunk} beers. ");
             if (isDrunk)
             {
-                Console.WriteLine($"{name} is drunk.");
+                output.Log($"{name} is drunk.");
             }
-            Console.WriteLine("");
+            output.Log("");
         }
         public static void SimulateGame(BeerPongPlayer player1)
         {
             for (int i = 0; i < 3; i++)
             {
                 player1.ThrowBall();
-                player1.drinkBeer();
+                player1.DrinkBeer();
             }
         }
         public static void SimulateCompetition(BeerPongPlayer player1, BeerPongPlayer player2)
@@ -136,15 +147,15 @@ namespace Sports
             int chanceP2 = myGen.Next(0, Convert.ToInt32(player2.Accuracy));
             if (chanceP1 > chanceP2)
             {
-                Console.WriteLine($"{player1.Name} has won!");
+                output.Log($"{player1.Name} has won!");
             }
             else if (chanceP1 < chanceP2)
             {
-                Console.WriteLine($"{player2.Name} has won!");
+                output.Log($"{player2.Name} has won!");
             }
             else
             {
-                Console.WriteLine($"it's a draw!");
+                output.Log($"it's a draw!");
             }
         }
         public static BeerPongPlayer BestPlayer(BeerPongPlayer player1, BeerPongPlayer player2)
@@ -154,12 +165,12 @@ namespace Sports
             int chanceP2 = myGen.Next(0, Convert.ToInt32(player2.Accuracy));
             if (chanceP1 > chanceP2)
             {
-                Console.WriteLine($"{player1.Name} is the best player!");
+                output.Log($"{player1.Name} is the best player!");
                 return player1;
             }
             else
             {
-                Console.WriteLine($"{player2.Name} is the best player!");
+                output.Log($"{player2.Name} is the best player!");
                 return player2;
             }
         }
