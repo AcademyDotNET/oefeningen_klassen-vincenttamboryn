@@ -93,20 +93,24 @@ namespace PokemonTester
                 if (condition)
                 {
                     output.Log("This is not a valid pokemon, try again.\nWould you like a list of all available pokemon? (yes or no)");
-                    string yesNo = Console.ReadLine().ToLower();
-                    switch (yesNo)
-                    {
-                        case "yes":
-                            ListAllPokemon(dex);
-                            break;
-                        default:
-                            break;
-                    }
+                    ListAllPokemon(dex);
                 }
             } while (condition);
             return dex[index];
         }
-        private void ListAllPokemon(IPocketMonster[] dex)
+        private static void ListAllPokemon(IPocketMonster[] dex)
+        {
+            string yesNo = Console.ReadLine().ToLower();
+            switch (yesNo)
+            {
+                case "yes":
+                    WritePokemon(dex);
+                    break;
+                default:
+                    break;
+            }
+        }
+        private static void WritePokemon(IPocketMonster[] dex)
         {
             Console.WriteLine();
             for (int i = 0; i < dex.Length; i++)
