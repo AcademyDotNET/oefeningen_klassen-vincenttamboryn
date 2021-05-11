@@ -35,12 +35,13 @@ namespace PokemonTester
             output = logger;
             Pokemon.NoLevelingAllowed = false;
             Random rNG = new Random();
-            IPocketMonster[] pokedex = AllPokemonsInitialiser();
+            PokemonDatabase allPokemons = new PokemonDatabase();
 
-            myPokemon = ChooseAPokemon(pokedex);
-            enemy = pokedex[rNG.Next(0, pokedex.Length)];
+            myPokemon = allPokemons.ChooseAPokemon();
+            enemy = allPokemons.Dex[rNG.Next(0, allPokemons.Dex.Length)];
 
-            Levels();
+            myPokemon.LevelUp(49);
+            enemy.LevelUp(49);
             WriteInfo();
         }
         public void BattleStart()
@@ -54,75 +55,28 @@ namespace PokemonTester
             myPokemon.ShowInfo();
             enemy.ShowInfo();
         }
-        private void Levels()
-        {
-            myPokemon.LevelUp(49);
-            enemy.LevelUp(49);
-        }
-        public IPocketMonster[] AllPokemonsInitialiser()
-        {
-            string[,] stats = CSV_reader.readCsvWeb();
-            IPocketMonster[] arrayOfPokemons = new Pokemon[stats.GetLength(0) - 1];
-            for (int i = 0; i < arrayOfPokemons.Length; i++)
-            {
-                arrayOfPokemons[i] = new Pokemon(stats[i + 1, 1], Convert.ToInt32(stats[i + 1, 5]), Convert.ToInt32(stats[i + 1, 6]), Convert.ToInt32(stats[i + 1, 7]), Convert.ToInt32(stats[i + 1, 8]), Convert.ToInt32(stats[i + 1, 9]), Convert.ToInt32(stats[i + 1, 10]));
-            }
-            return arrayOfPokemons;
-        }
-        public IPocketMonster ChooseAPokemon(IPocketMonster[] dex)
-        {
-            //allows the user to choose a pokemon, checks if the input is the name of a pokemon.
-            //repeats this loop untill the input corresponds to a pokemon.
-            //if the input does not correspond to a pokemon the programs asks if you want to see a list of all available pokemons.
-            bool condition = true;
-            int index = 0;
-            do
-            {
-                output.Log("which pokemon would you like to use?");
-                string input = Console.ReadLine();
-                input.ToLower();
-                string pokemon = input[0].ToString().ToUpper() + input.Substring(1);
-                for (int i = 0; i < dex.Length; i++)
-                {
-                    if (dex[i].Name == pokemon)
-                    {
-                        index = i;
-                        condition = false;
-                    }
-                }
-                if (condition)
-                {
-                    output.Log("This is not a valid pokemon, try again.\nWould you like a list of all available pokemon? (yes or no)");
-                    ListAllPokemon(dex);
-                }
-            } while (condition);
-            return dex[index];
-        }
-        private static void ListAllPokemon(IPocketMonster[] dex)
-        {
-            string yesNo = Console.ReadLine().ToLower();
-            switch (yesNo)
-            {
-                case "yes":
-                    WritePokemon(dex);
-                    break;
-                default:
-                    break;
-            }
-        }
-        private static void WritePokemon(IPocketMonster[] dex)
-        {
-            Console.WriteLine();
-            for (int i = 0; i < dex.Length; i++)
-            {
-                Console.WriteLine(dex[i].Name);
-            }
-            Console.WriteLine();
-        }
-        public static int Battle(IPocketMonster poke1, IPocketMonster poke2)
+        public static int Battle(IPocketMonster poke1, IPocketMonster poke2)//drie blokken
         {
             NumberOfBattles++;
+
             //check if a pokemon is null
+            int nil = NullCheck(poke1, poke2);
+            if (nil != -1)
+            {
+                return nil;
+            }
+
+            // initialise changeable values for the hp of both pokemon (should probably be a property of the pokemon class)
+            int health1 = poke1.Full_HP;
+            int health2 = poke2.Full_HP;
+
+            // attack sequance, fastest pokemon attacks first, then slowest, both attack with with their highest attack stat, minimum 2 damage, until one has 0 hp. 
+            ActualBattle(poke1, poke2, ref health1, ref health2);
+
+            return WhoWon(poke1, poke2, health1, health2);
+        }
+        static int NullCheck(IPocketMonster poke1, IPocketMonster poke2)
+        {
             if (poke1 == null && poke2 == null)
             {
                 output.Log("no winner");
@@ -136,37 +90,33 @@ namespace PokemonTester
             {
                 return Won(poke1, 1);
             }
-
-            // initialise changeable values for the hp of both pokemon
-            int health1 = poke1.Full_HP;
-            int health2 = poke2.Full_HP;
-
-            Random rNG = new Random();
-
+            else return -1;
+        }
+        static void ActualBattle(IPocketMonster poke1, IPocketMonster poke2, ref int health1, ref int health2)
+        {
             // Power of a used move (moves not inplemented so base 80) & randomness of damage
             int power = 80;
-
-            // attack sequance, fastest pokemon attacks first, then slowest, both attack with with their highest attack stat, minimum 2 damage, until one has 0 hp. 
             do
             {
                 if (poke1.Full_Speed > poke2.Full_Speed)
                 {
-                    attackSequence(poke1,poke2, ref health1, ref health2, power);
+                    AttackSequence(poke1, poke2, ref health1, ref health2, power);
                 }
                 else
                 {
-                    attackSequence(poke2, poke1, ref health2, ref health1, power);
+                    AttackSequence(poke2, poke1, ref health2, ref health1, power);
                 }
             } while (health1 > 0 && health2 > 0);
-
-            //who won
-            if (health1 <= 0 && health2 <= 0)
+        }
+        static int WhoWon(IPocketMonster poke1, IPocketMonster poke2, int healthPoke1, int healthPoke2)
+        {
+            if (healthPoke1 <= 0 && healthPoke2 <= 0)
             {
                 Draws++;
                 output.Log("it's a draw");
                 return 0;
             }
-            else if (health1 <= 0)
+            else if (healthPoke1 <= 0)
             {
                 return Won(poke2, 2);
             }
@@ -175,7 +125,7 @@ namespace PokemonTester
                 return Won(poke1, 1);
             }
         }
-        static void attackSequence(IPocketMonster fastestMon, IPocketMonster slowestMon, ref int health1, ref int health2, int power = 80)
+        static void AttackSequence(IPocketMonster fastestMon, IPocketMonster slowestMon, ref int health1, ref int health2, int power = 80)
         {
             if (fastestMon.Full_Attack > fastestMon.Full_SpecialAttack)
             {

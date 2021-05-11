@@ -12,7 +12,5 @@ namespace PokemonTester
         public IPocketMonster enemy { get; }
         public void BattleStart();
         public void WriteInfo();
-        public IPocketMonster[] AllPokemonsInitialiser();
-        public IPocketMonster ChooseAPokemon(IPocketMonster[] dex);
     }
 }
