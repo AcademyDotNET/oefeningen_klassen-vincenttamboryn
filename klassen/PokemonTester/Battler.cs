@@ -11,6 +11,7 @@ namespace PokemonTester
         public IPocketMonster myPokemon { get; }
         public IPocketMonster enemy { get; }
         static IOutput output;
+        static IInput input = new ConsoleInputLogger();
         private static int draws = 0;
         private static int numberOfBattles = 0;
         public static int Draws
@@ -47,7 +48,7 @@ namespace PokemonTester
         public void BattleStart()
         {
             output.Log("ready to battle?");
-            Console.ReadLine();
+            input.InputLog();
             Battle(myPokemon, enemy);
         }
         public void WriteInfo()
@@ -143,15 +144,18 @@ namespace PokemonTester
                 health2 -= DamageCalculations(fastestMon, slowestMon, "special", power);
                 output.Log($"{slowestMon.Name} has {Math.Max(health2, 0)} HP left\n");
             }
-            if (slowestMon.Full_Attack > slowestMon.Full_SpecialAttack)
+            if (health2 > 0)
             {
-                health1 -= DamageCalculations(slowestMon, fastestMon, "normal", power);
-                output.Log($"{fastestMon.Name} has {Math.Max(health1, 0)} HP left\n");
-            }
-            else
-            {
-                health1 -= DamageCalculations(slowestMon, fastestMon, "special", power);
-                output.Log($"{fastestMon.Name} has {Math.Max(health1, 0)} HP left\n");
+                if (slowestMon.Full_Attack > slowestMon.Full_SpecialAttack)
+                {
+                    health1 -= DamageCalculations(slowestMon, fastestMon, "normal", power);
+                    output.Log($"{fastestMon.Name} has {Math.Max(health1, 0)} HP left\n");
+                }
+                else
+                {
+                    health1 -= DamageCalculations(slowestMon, fastestMon, "special", power);
+                    output.Log($"{fastestMon.Name} has {Math.Max(health1, 0)} HP left\n");
+                }
             }
         }
         static int DamageCalculations(IPocketMonster attackingPoke, IPocketMonster defendingPoke, string normalSpecial, int power)

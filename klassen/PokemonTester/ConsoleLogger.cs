@@ -8,7 +8,7 @@ namespace PokemonTester
 {
     class ConsoleLogger:IOutput
     {
-        public void Log(string message)
+        public void Log(string message = "")
         {
             Console.WriteLine(message);
         }

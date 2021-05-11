@@ -8,11 +8,11 @@ namespace PokemonTester
 {
     static class PocketMonsterFactory
     {
-        public static IPocketMonster Build(string classname, Object[] args)
+        public static IPocketMonster Build(string classname, Object[] constructorArguments)
         {
-            var y = Type.GetType($"PokemonTester.{classname}");
-            IPocketMonster vehicle = (IPocketMonster)Activator.CreateInstance(y, args);
-            return vehicle;
+            var objectType = Type.GetType($"PokemonTester.{classname}");
+            IPocketMonster pocketMonster = (IPocketMonster)Activator.CreateInstance(objectType, constructorArguments);
+            return pocketMonster;
         }
     }
 }

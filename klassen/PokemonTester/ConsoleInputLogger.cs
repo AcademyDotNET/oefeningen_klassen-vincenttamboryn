@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace PokemonTester
 {
-    interface IOutput
+    class ConsoleInputLogger:IInput
     {
-        public void Log(string message = "");
+        public string InputLog()
+        {
+            return Console.ReadLine();
+        }
     }
 }

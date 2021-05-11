@@ -17,6 +17,7 @@ namespace PokemonTester
         private int level = 1;
         public static int levelups = 0;
         public static int howManyRandomMons = 0;
+        static IInput input = new ConsoleInputLogger();
         static IOutput output = new ConsoleLogger();
         public Pokemon()
         {
@@ -141,7 +142,7 @@ namespace PokemonTester
         public int Full_HP
         {
             get 
-            { return (((Base_HP + 50) * Level) / 50) + 10; }
+            { return (((Base_HP + 50) * Level) / 50) + Level + 10; }
         }
         public int Full_Attack
         {
@@ -200,7 +201,7 @@ namespace PokemonTester
             Pokemon pokemon2 = new Pokemon();
             Random randomGenerator = new Random();
             output.Log("what is the name of this pokemon");
-            pokemon2.Name = Console.ReadLine();
+            pokemon2.Name = input.InputLog();
             pokemon2.Base_HP = randomGenerator.Next(10, 255);
             pokemon2.Base_Attack = randomGenerator.Next(10, Math.Max(Math.Min(650 - pokemon2.Base_HP, 255), 20));
             pokemon2.Base_Defense = randomGenerator.Next(10, Math.Max(Math.Min(650 - pokemon2.Base_HP - pokemon2.Base_Attack, 200), 20));

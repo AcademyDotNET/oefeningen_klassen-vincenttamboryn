@@ -10,6 +10,7 @@ namespace PokemonTester
     {
         public IPocketMonster[] Dex { get; private set; }
         static IOutput output = new ConsoleLogger();
+        static IInput input = new ConsoleInputLogger();
         public PokemonDatabase()
         {
             Dex = AllPokemonsInitialiser();
@@ -35,9 +36,9 @@ namespace PokemonTester
             do
             {
                 output.Log("which pokemon would you like to use?");
-                string input = Console.ReadLine();
-                input.ToLower();
-                string pokemon = input[0].ToString().ToUpper() + input.Substring(1);
+                string choise = input.InputLog();
+                choise.ToLower();
+                string pokemon = choise[0].ToString().ToUpper() + choise.Substring(1);
                 for (int i = 0; i < Dex.Length; i++)
                 {
                     if (Dex[i].Name == pokemon)
@@ -56,7 +57,7 @@ namespace PokemonTester
         }
         public void ListAllPokemon()
         {
-            string yesNo = Console.ReadLine().ToLower();
+            string yesNo = input.InputLog().ToLower();
             switch (yesNo)
             {
                 case "yes":
@@ -68,12 +69,12 @@ namespace PokemonTester
         }
         public void WritePokemon()
         {
-            Console.WriteLine();
+            output.Log();
             for (int i = 0; i < Dex.Length; i++)
             {
-                Console.WriteLine(Dex[i].Name);
+                output.Log(Dex[i].Name);
             }
-            Console.WriteLine();
+            output.Log();
         }
     }
 }
