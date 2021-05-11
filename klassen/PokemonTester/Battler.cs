@@ -147,11 +147,11 @@ namespace PokemonTester
             {
                 if (poke1.Full_Speed > poke2.Full_Speed)
                 {
-                    attackSequence(poke1,poke2, ref health1, ref health2);
+                    attackSequence(poke1,poke2, ref health1, ref health2, power);
                 }
                 else
                 {
-                    attackSequence(poke2, poke1, ref health2, ref health1);
+                    attackSequence(poke2, poke1, ref health2, ref health1, power);
                 }
             } while (health1 > 0 && health2 > 0);
 
