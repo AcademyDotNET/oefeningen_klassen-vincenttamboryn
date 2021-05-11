@@ -8,6 +8,7 @@ namespace PokemonTester
 {
     interface IPokemonDB
     {
+        public IPocketMonster[] Dex { get; }
         public IPocketMonster[] AllPokemonsInitialiser();
         public IPocketMonster ChooseAPokemon();
         public void ListAllPokemon();

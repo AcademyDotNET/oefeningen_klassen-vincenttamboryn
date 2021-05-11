@@ -12,7 +12,7 @@ namespace PokemonTester
     class CSV_reader
     {
         const string delimeter = ",";
-        public static string[,] readCsv()
+        public static string[,] ReadCsv()
         {
             StreamReader streamReader;
             try
@@ -45,7 +45,7 @@ namespace PokemonTester
                 return values;
             }
         }
-        public static string[,] readCsvWeb()
+        public static string[,] ReadCsvWeb()
         {
             string result = "";
             try

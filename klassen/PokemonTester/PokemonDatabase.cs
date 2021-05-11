@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PokemonTester
 {
-    class PokemonDatabase
+    class PokemonDatabase:IPokemonDB
     {
         public IPocketMonster[] Dex { get; private set; }
         static IOutput output = new ConsoleLogger();
@@ -17,7 +17,7 @@ namespace PokemonTester
         }
         public IPocketMonster[] AllPokemonsInitialiser()
         {
-            string[,] stats = CSV_reader.readCsvWeb();
+            string[,] stats = CSV_reader.ReadCsvWeb();
             IPocketMonster[] arrayOfPokemons = new IPocketMonster[stats.GetLength(0) - 1];
             for (int i = 0; i < arrayOfPokemons.Length; i++)
             {
@@ -29,7 +29,7 @@ namespace PokemonTester
         public IPocketMonster ChooseAPokemon()
         {
             //allows the user to choose a pokemon, checks if the input is the name of a pokemon.
-            //repeats this loop untill the input corresponds to a pokemon.
+            //repeats this loop until the userinput corresponds to a pokemon.
             //if the input does not correspond to a pokemon the programs asks if you want to see a list of all available pokemons.
             bool condition = true;
             int index = 0;

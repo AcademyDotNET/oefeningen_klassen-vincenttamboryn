@@ -36,7 +36,7 @@ namespace PokemonTester
             output = logger;
             Pokemon.NoLevelingAllowed = false;
 
-            PokemonDatabase allPokemons = new PokemonDatabase();
+            IPokemonDB allPokemons = new PokemonDatabase();
             myPokemon = allPokemons.ChooseAPokemon();
 
             Random rNG = new Random();
@@ -62,10 +62,9 @@ namespace PokemonTester
             NumberOfBattles++;
 
             //check if a pokemon is null
-            int nil = NullCheck(poke1, poke2);
-            if (nil != -1)
+            if (NullCheck(poke1, poke2) != -1)
             {
-                return nil;
+                return NullCheck(poke1, poke2);
             }
 
             // initialise changeable values for the hp of both pokemon (should probably be a property of the pokemon class)
@@ -79,7 +78,7 @@ namespace PokemonTester
             return WhoWon(poke1, poke2, health1, health2);
         }
         static int NullCheck(IPocketMonster poke1, IPocketMonster poke2)
-        {
+        {//check if a pokemon is null
             if (poke1 == null && poke2 == null)
             {
                 output.Print("no winner");
@@ -96,7 +95,7 @@ namespace PokemonTester
             else return -1;
         }
         static void ActualBattle(IPocketMonster poke1, IPocketMonster poke2, ref int health1, ref int health2)
-        {
+        {// attack sequance, fastest pokemon attacks first, then slowest
             // Power of a used move (moves not inplemented so base 80) & randomness of damage
             int power = 80;
             do
@@ -111,30 +110,8 @@ namespace PokemonTester
                 }
             } while (health1 > 0 && health2 > 0);
         }
-        static int WhoWon(IPocketMonster poke1, IPocketMonster poke2, int healthPoke1, int healthPoke2)
-        {
-            if (healthPoke1 <= 0 && healthPoke2 <= 0)
-            {
-                Draws++;
-                output.Print("it's a draw");
-                return 0;
-            }
-            else if (healthPoke1 <= 0)
-            {
-                return Won(poke2, 2);
-            }
-            else
-            {
-                return Won(poke1, 1);
-            }
-        }
-        static int Won(IPocketMonster poke, int number)
-        {
-            output.Print($"{poke.Name} has won this battle!");
-            return number;
-        }
         static void AttackSequence(IPocketMonster fastestMon, IPocketMonster slowestMon, ref int health1, ref int health2, int power = 80)
-        {
+        {// attack sequance, both attack with with their highest attack stat, minimum 2 damage, until one has 0 hp. 
             if (fastestMon.Full_Attack > fastestMon.Full_SpecialAttack)
             {
                 health2 -= DamageCalculations(fastestMon, slowestMon, "normal", power);
@@ -159,10 +136,31 @@ namespace PokemonTester
                 }
             }
         }
+        static int WhoWon(IPocketMonster poke1, IPocketMonster poke2, int healthPoke1, int healthPoke2)
+        {//check who lost and return a value
+            if (healthPoke1 <= 0 && healthPoke2 <= 0)
+            {
+                Draws++;
+                output.Print("it's a draw");
+                return 0;
+            }
+            else if (healthPoke1 <= 0)
+            {
+                return Won(poke2, 2);
+            }
+            else
+            {
+                return Won(poke1, 1);
+            }
+        }
+        static int Won(IPocketMonster poke, int number)
+        {//returns the value corresponding to the winning 'Mon
+            output.Print($"{poke.Name} has won this battle!");
+            return number;
+        }
         static int DamageCalculations(IPocketMonster attackingPoke, IPocketMonster defendingPoke, string normalSpecial, int power)
         {
             //calculates the damage a pokemon would take and returns it. Randomness makes it so damage isn't predetermined
-
             Random rNG = new Random();
             int randomnessLowerBound = 85;
             int hpLost;
