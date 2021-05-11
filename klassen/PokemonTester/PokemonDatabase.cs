@@ -17,10 +17,11 @@ namespace PokemonTester
         public IPocketMonster[] AllPokemonsInitialiser()
         {
             string[,] stats = CSV_reader.readCsvWeb();
-            IPocketMonster[] arrayOfPokemons = new Pokemon[stats.GetLength(0) - 1];
+            IPocketMonster[] arrayOfPokemons = new IPocketMonster[stats.GetLength(0) - 1];
             for (int i = 0; i < arrayOfPokemons.Length; i++)
             {
-                arrayOfPokemons[i] = new Pokemon(stats[i + 1, 1], Convert.ToInt32(stats[i + 1, 5]), Convert.ToInt32(stats[i + 1, 6]), Convert.ToInt32(stats[i + 1, 7]), Convert.ToInt32(stats[i + 1, 8]), Convert.ToInt32(stats[i + 1, 9]), Convert.ToInt32(stats[i + 1, 10]));
+                Object[] statsOfThisMon = { stats[i + 1, 1], Convert.ToInt32(stats[i + 1, 5]), Convert.ToInt32(stats[i + 1, 6]), Convert.ToInt32(stats[i + 1, 7]), Convert.ToInt32(stats[i + 1, 8]), Convert.ToInt32(stats[i + 1, 9]), Convert.ToInt32(stats[i + 1, 10]) };
+                arrayOfPokemons[i] = PocketMonsterFactory.Build("Pokemon",statsOfThisMon);
             }
             return arrayOfPokemons;
         }

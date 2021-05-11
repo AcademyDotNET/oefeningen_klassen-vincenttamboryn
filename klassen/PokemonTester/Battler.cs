@@ -55,7 +55,7 @@ namespace PokemonTester
             myPokemon.ShowInfo();
             enemy.ShowInfo();
         }
-        public static int Battle(IPocketMonster poke1, IPocketMonster poke2)//drie blokken
+        public static int Battle(IPocketMonster poke1, IPocketMonster poke2)
         {
             NumberOfBattles++;
 
@@ -73,6 +73,7 @@ namespace PokemonTester
             // attack sequance, fastest pokemon attacks first, then slowest, both attack with with their highest attack stat, minimum 2 damage, until one has 0 hp. 
             ActualBattle(poke1, poke2, ref health1, ref health2);
 
+            //check who lost and return a value
             return WhoWon(poke1, poke2, health1, health2);
         }
         static int NullCheck(IPocketMonster poke1, IPocketMonster poke2)
@@ -125,6 +126,11 @@ namespace PokemonTester
                 return Won(poke1, 1);
             }
         }
+        static int Won(IPocketMonster poke, int number)
+        {
+            output.Log($"{poke.Name} has won this battle!");
+            return number;
+        }
         static void AttackSequence(IPocketMonster fastestMon, IPocketMonster slowestMon, ref int health1, ref int health2, int power = 80)
         {
             if (fastestMon.Full_Attack > fastestMon.Full_SpecialAttack)
@@ -147,11 +153,6 @@ namespace PokemonTester
                 health1 -= DamageCalculations(slowestMon, fastestMon, "special", power);
                 output.Log($"{fastestMon.Name} has {Math.Max(health1, 0)} HP left\n");
             }
-        }
-        static int Won(IPocketMonster poke, int number)
-        {
-            output.Log($"{poke.Name} has won this battle!");
-            return number;
         }
         static int DamageCalculations(IPocketMonster attackingPoke, IPocketMonster defendingPoke, string normalSpecial, int power)
         {
