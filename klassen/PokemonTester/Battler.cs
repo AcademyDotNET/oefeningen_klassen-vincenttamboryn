@@ -10,8 +10,8 @@ namespace PokemonTester
     {
         public IPocketMonster myPokemon { get; }
         public IPocketMonster enemy { get; }
-        static IOutput output;
-        static IInput input = new ConsoleInputLogger();
+        public static IOutput output;
+        public static IInput input = new ConsoleInputLogger();
         private static int draws = 0;
         private static int numberOfBattles = 0;
         public static int Draws
