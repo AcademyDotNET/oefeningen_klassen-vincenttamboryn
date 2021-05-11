@@ -8,6 +8,11 @@ namespace PokemonTester
 {
     interface IMatch
     {
+        public IPocketMonster myPokemon { get; }
+        public IPocketMonster enemy { get; }
         public void BattleStart();
+        public void WriteInfo();
+        public IPocketMonster[] AllPokemonsInitialiser();
+        public IPocketMonster ChooseAPokemon(IPocketMonster[] dex);
     }
 }

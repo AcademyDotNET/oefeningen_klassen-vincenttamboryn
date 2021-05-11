@@ -8,8 +8,8 @@ namespace PokemonTester
 {
     class Battler:IMatch
     {
-        public IPocketMonster myPokemon;
-        public IPocketMonster enemy;
+        public IPocketMonster myPokemon { get; }
+        public IPocketMonster enemy { get; }
         static IOutput output;
         private static int draws = 0;
         private static int numberOfBattles = 0;
@@ -40,11 +40,8 @@ namespace PokemonTester
             myPokemon = ChooseAPokemon(pokedex);
             enemy = pokedex[rNG.Next(0, pokedex.Length)];
 
-            myPokemon.LevelUp(49);
-            enemy.LevelUp(49);
-
-            myPokemon.ShowInfo();
-            enemy.ShowInfo();
+            Levels();
+            WriteInfo();
         }
         public void BattleStart()
         {
@@ -52,7 +49,17 @@ namespace PokemonTester
             Console.ReadLine();
             Battle(myPokemon, enemy);
         }
-        private IPocketMonster[] AllPokemonsInitialiser()
+        public void WriteInfo()
+        {
+            myPokemon.ShowInfo();
+            enemy.ShowInfo();
+        }
+        private void Levels()
+        {
+            myPokemon.LevelUp(49);
+            enemy.LevelUp(49);
+        }
+        public IPocketMonster[] AllPokemonsInitialiser()
         {
             string[,] stats = CSV_reader.readCsvWeb();
             IPocketMonster[] arrayOfPokemons = new Pokemon[stats.GetLength(0) - 1];
@@ -62,7 +69,7 @@ namespace PokemonTester
             }
             return arrayOfPokemons;
         }
-        private IPocketMonster ChooseAPokemon(IPocketMonster[] dex)
+        public IPocketMonster ChooseAPokemon(IPocketMonster[] dex)
         {
             //allows the user to choose a pokemon, checks if the input is the name of a pokemon.
             //repeats this loop untill the input corresponds to a pokemon.
@@ -140,49 +147,11 @@ namespace PokemonTester
             {
                 if (poke1.Full_Speed > poke2.Full_Speed)
                 {
-                    if (poke1.Full_Attack > poke1.Full_SpecialAttack)
-                    {
-                        health2 -= DamageCalculations(poke1, poke2, "normal", power);
-                        output.Log($"{poke2.Name} has {Math.Max(health2, 0)} HP left\n");
-                    }
-                    else
-                    {
-                        health2 -= DamageCalculations(poke1, poke2, "special", power);
-                        output.Log($"{poke2.Name} has {Math.Max(health2, 0)} HP left\n");
-                    }
-                    if (poke2.Full_Attack > poke2.Full_SpecialAttack)
-                    {
-                        health1 -= DamageCalculations(poke2, poke1, "normal", power);
-                        output.Log($"{poke1.Name} has {Math.Max(health1, 0)} HP left\n");
-                    }
-                    else
-                    {
-                        health1 -= DamageCalculations(poke2, poke1, "special", power);
-                        output.Log($"{poke1.Name} has {Math.Max(health1, 0)} HP left\n");
-                    }
+                    attackSequence(poke1,poke2, ref health1, ref health2);
                 }
                 else
                 {
-                    if (poke2.Full_Attack > poke2.Full_SpecialAttack)
-                    {
-                        health1 -= DamageCalculations(poke2, poke1, "normal", power);
-                        output.Log($"{poke1.Name} has {Math.Max(health1, 0)} HP left\n");
-                    }
-                    else
-                    {
-                        health1 -= DamageCalculations(poke2, poke1, "special", power);
-                        output.Log($"{poke1.Name} has {Math.Max(health1, 0)} HP left\n");
-                    }
-                    if (poke1.Full_Attack > poke1.Full_SpecialAttack)
-                    {
-                        health2 -= DamageCalculations(poke1, poke2, "normal", power);
-                        output.Log($"{poke2.Name} has {Math.Max(health2, 0)} HP left\n");
-                    }
-                    else
-                    {
-                        health2 -= DamageCalculations(poke1, poke2, "special", power);
-                        output.Log($"{poke2.Name} has {Math.Max(health2, 0)} HP left\n");
-                    }
+                    attackSequence(poke2, poke1, ref health2, ref health1);
                 }
             } while (health1 > 0 && health2 > 0);
 
@@ -200,6 +169,29 @@ namespace PokemonTester
             else
             {
                 return Won(poke1, 1);
+            }
+        }
+        static void attackSequence(IPocketMonster fastestMon, IPocketMonster slowestMon, ref int health1, ref int health2, int power = 80)
+        {
+            if (fastestMon.Full_Attack > fastestMon.Full_SpecialAttack)
+            {
+                health2 -= DamageCalculations(fastestMon, slowestMon, "normal", power);
+                output.Log($"{slowestMon.Name} has {Math.Max(health2, 0)} HP left\n");
+            }
+            else
+            {
+                health2 -= DamageCalculations(fastestMon, slowestMon, "special", power);
+                output.Log($"{slowestMon.Name} has {Math.Max(health2, 0)} HP left\n");
+            }
+            if (slowestMon.Full_Attack > slowestMon.Full_SpecialAttack)
+            {
+                health1 -= DamageCalculations(slowestMon, fastestMon, "normal", power);
+                output.Log($"{fastestMon.Name} has {Math.Max(health1, 0)} HP left\n");
+            }
+            else
+            {
+                health1 -= DamageCalculations(slowestMon, fastestMon, "special", power);
+                output.Log($"{fastestMon.Name} has {Math.Max(health1, 0)} HP left\n");
             }
         }
         static int Won(IPocketMonster poke, int number)
