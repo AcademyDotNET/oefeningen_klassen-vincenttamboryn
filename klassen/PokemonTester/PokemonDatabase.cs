@@ -35,8 +35,8 @@ namespace PokemonTester
             int index = 0;
             do
             {
-                output.Log("which pokemon would you like to use?");
-                string choise = input.InputLog();
+                output.Print("which pokemon would you like to use?");
+                string choise = input.ReadInput();
                 choise.ToLower();
                 string pokemon = choise[0].ToString().ToUpper() + choise.Substring(1);
                 for (int i = 0; i < Dex.Length; i++)
@@ -49,7 +49,7 @@ namespace PokemonTester
                 }
                 if (condition)
                 {
-                    output.Log("This is not a valid pokemon, try again.\nWould you like a list of all available pokemon? (yes or no)");
+                    output.Print("This is not a valid pokemon, try again.\nWould you like a list of all available pokemon? (yes or no)");
                     ListAllPokemon();
                 }
             } while (condition);
@@ -57,7 +57,7 @@ namespace PokemonTester
         }
         public void ListAllPokemon()
         {
-            string yesNo = input.InputLog().ToLower();
+            string yesNo = input.ReadInput().ToLower();
             switch (yesNo)
             {
                 case "yes":
@@ -69,12 +69,12 @@ namespace PokemonTester
         }
         public void WritePokemon()
         {
-            output.Log();
+            output.Print();
             for (int i = 0; i < Dex.Length; i++)
             {
-                output.Log(Dex[i].Name);
+                output.Print(Dex[i].Name);
             }
-            output.Log();
+            output.Print();
         }
     }
 }

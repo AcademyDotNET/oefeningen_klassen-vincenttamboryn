@@ -8,7 +8,7 @@ namespace PokemonTester
 {
     class ConsoleInputLogger:IInput
     {
-        public string InputLog()
+        public string ReadInput()
         {
             return Console.ReadLine();
         }

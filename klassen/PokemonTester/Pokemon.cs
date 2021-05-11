@@ -179,7 +179,7 @@ namespace PokemonTester
         {
             if (NoLevelingAllowed)
             {
-                output.Log("No leveling allowed! No levels were gained!");
+                output.Print("No leveling allowed! No levels were gained!");
             }
             else
             {
@@ -189,7 +189,7 @@ namespace PokemonTester
         }
         public void ShowInfo()
         {
-            output.Log($"{Name} (level {Level})\nBase stats:\n\t * Health = {Base_HP}\n\t * Attack = {Base_Attack}\n\t * Defense = {Base_Defense}\n\t" +
+            output.Print($"{Name} (level {Level})\nBase stats:\n\t * Health = {Base_HP}\n\t * Attack = {Base_Attack}\n\t * Defense = {Base_Defense}\n\t" +
                 $" * Special Attack = {Base_SpecialAttack}\n\t * Special Defense = {Base_SpecialDefense}\n\t * Speed = {Base_Speed}\n\n\t * Total = {Total}\n\t * Avarage = {Average}" +
                 $"\nFull stats:\n\t * Health = {Full_HP}\n\t * Attack = {Full_Attack}\n\t * Defense = {Full_Defense}\n\t" +
                 $" * Special Attack = {Full_SpecialAttack}\n\t * Special Defense = {Full_SpecialDefense}\n\t * Speed = {Full_Speed}");
@@ -200,8 +200,8 @@ namespace PokemonTester
 
             Pokemon pokemon2 = new Pokemon();
             Random randomGenerator = new Random();
-            output.Log("what is the name of this pokemon");
-            pokemon2.Name = input.InputLog();
+            output.Print("what is the name of this pokemon");
+            pokemon2.Name = input.ReadInput();
             pokemon2.Base_HP = randomGenerator.Next(10, 255);
             pokemon2.Base_Attack = randomGenerator.Next(10, Math.Max(Math.Min(650 - pokemon2.Base_HP, 255), 20));
             pokemon2.Base_Defense = randomGenerator.Next(10, Math.Max(Math.Min(650 - pokemon2.Base_HP - pokemon2.Base_Attack, 200), 20));
@@ -215,10 +215,10 @@ namespace PokemonTester
         
         public static void Info()
         {
-            output.Log($"\nA total of {Levelups} levels have been gained");
-            output.Log($"There have been a total of {Battler.NumberOfBattles} battles");
-            output.Log($"{Battler.Draws} of those ended in a draw");
-            output.Log($"{HowManyRandomMons} random pokemons were generated");
+            output.Print($"\nA total of {Levelups} levels have been gained");
+            output.Print($"There have been a total of {Battler.NumberOfBattles} battles");
+            output.Print($"{Battler.Draws} of those ended in a draw");
+            output.Print($"{HowManyRandomMons} random pokemons were generated");
         }
         public override bool Equals(object obj)
         {

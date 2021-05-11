@@ -8,6 +8,6 @@ namespace PokemonTester
 {
     interface IInput
     {
-        public string InputLog();
+        public string ReadInput();
     }
 }

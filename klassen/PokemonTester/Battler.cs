@@ -35,10 +35,11 @@ namespace PokemonTester
         {
             output = logger;
             Pokemon.NoLevelingAllowed = false;
-            Random rNG = new Random();
-            PokemonDatabase allPokemons = new PokemonDatabase();
 
+            PokemonDatabase allPokemons = new PokemonDatabase();
             myPokemon = allPokemons.ChooseAPokemon();
+
+            Random rNG = new Random();
             enemy = allPokemons.Dex[rNG.Next(0, allPokemons.Dex.Length)];
 
             myPokemon.LevelUp(49);
@@ -47,8 +48,8 @@ namespace PokemonTester
         }
         public void BattleStart()
         {
-            output.Log("ready to battle?");
-            input.InputLog();
+            output.Print("ready to battle?");
+            input.ReadInput();
             Battle(myPokemon, enemy);
         }
         public void WriteInfo()
@@ -81,7 +82,7 @@ namespace PokemonTester
         {
             if (poke1 == null && poke2 == null)
             {
-                output.Log("no winner");
+                output.Print("no winner");
                 return 0;
             }
             if (poke1 == null)
@@ -115,7 +116,7 @@ namespace PokemonTester
             if (healthPoke1 <= 0 && healthPoke2 <= 0)
             {
                 Draws++;
-                output.Log("it's a draw");
+                output.Print("it's a draw");
                 return 0;
             }
             else if (healthPoke1 <= 0)
@@ -129,7 +130,7 @@ namespace PokemonTester
         }
         static int Won(IPocketMonster poke, int number)
         {
-            output.Log($"{poke.Name} has won this battle!");
+            output.Print($"{poke.Name} has won this battle!");
             return number;
         }
         static void AttackSequence(IPocketMonster fastestMon, IPocketMonster slowestMon, ref int health1, ref int health2, int power = 80)
@@ -137,24 +138,24 @@ namespace PokemonTester
             if (fastestMon.Full_Attack > fastestMon.Full_SpecialAttack)
             {
                 health2 -= DamageCalculations(fastestMon, slowestMon, "normal", power);
-                output.Log($"{slowestMon.Name} has {Math.Max(health2, 0)} HP left\n");
+                output.Print($"{slowestMon.Name} has {Math.Max(health2, 0)} HP left\n");
             }
             else
             {
                 health2 -= DamageCalculations(fastestMon, slowestMon, "special", power);
-                output.Log($"{slowestMon.Name} has {Math.Max(health2, 0)} HP left\n");
+                output.Print($"{slowestMon.Name} has {Math.Max(health2, 0)} HP left\n");
             }
             if (health2 > 0)
             {
                 if (slowestMon.Full_Attack > slowestMon.Full_SpecialAttack)
                 {
                     health1 -= DamageCalculations(slowestMon, fastestMon, "normal", power);
-                    output.Log($"{fastestMon.Name} has {Math.Max(health1, 0)} HP left\n");
+                    output.Print($"{fastestMon.Name} has {Math.Max(health1, 0)} HP left\n");
                 }
                 else
                 {
                     health1 -= DamageCalculations(slowestMon, fastestMon, "special", power);
-                    output.Log($"{fastestMon.Name} has {Math.Max(health1, 0)} HP left\n");
+                    output.Print($"{fastestMon.Name} has {Math.Max(health1, 0)} HP left\n");
                 }
             }
         }
@@ -168,12 +169,12 @@ namespace PokemonTester
             if (normalSpecial == "special")
             {
                 hpLost = Convert.ToInt32(Convert.ToDouble(((2 * attackingPoke.Level / 5) * (attackingPoke.Full_SpecialAttack / defendingPoke.Full_SpecialDefense) * power / 50) + 2) * (Convert.ToDouble(rNG.Next(randomnessLowerBound, 101)) / 100.0));
-                output.Log($"{attackingPoke.Name} hits {defendingPoke.Name} with a special attack!");
+                output.Print($"{attackingPoke.Name} hits {defendingPoke.Name} with a special attack!");
             }
             else
             {
                 hpLost = Convert.ToInt32(Convert.ToDouble(((2 * attackingPoke.Level / 5) * (attackingPoke.Full_Attack / defendingPoke.Full_Defense) * power / 50) + 2) * (Convert.ToDouble(rNG.Next(randomnessLowerBound, 101)) / 100.0));
-                output.Log($"{attackingPoke.Name} hits {defendingPoke.Name} with a regular attack!");
+                output.Print($"{attackingPoke.Name} hits {defendingPoke.Name} with a regular attack!");
             }
             return hpLost;
         }

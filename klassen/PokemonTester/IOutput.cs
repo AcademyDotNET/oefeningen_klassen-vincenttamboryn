@@ -8,6 +8,6 @@ namespace PokemonTester
 {
     interface IOutput
     {
-        public void Log(string message = "");
+        public void Print(string message = "");
     }
 }
