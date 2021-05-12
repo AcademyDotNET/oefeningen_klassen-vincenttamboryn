@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Game
 {
-    class Monster : MapElement,IMoveable
+    class Monster : MapElement,IMoveable,IDestroyer
     {
         public Monster() : base('M')
         { drawColor = ConsoleColor.Red; }
@@ -76,7 +76,7 @@ namespace Game
         {
             foreach (var item in MapElement.allElements)
             {
-                if (item is Player)
+                if (item is IPlayerCharacter)
                 {
                     if (this.Location.X - 1 == item.Location.X && this.Location.Y == item.Location.Y)
                     {
@@ -86,11 +86,11 @@ namespace Game
             }
             return false;
         }
-        public void ShootPlayer()
+        public void Shoot()
         {
             foreach (var item in MapElement.allElements)
             {
-                if (this.Location.X - 1 == item.Location.X && this.Location.Y == item.Location.Y && item is Player)
+                if (this.Location.X - 1 == item.Location.X && this.Location.Y == item.Location.Y && item is IPlayerCharacter)
                 {
                     item.Die();
                     return;

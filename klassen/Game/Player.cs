@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Game
 {
-    class Player : MapElement,IMoveable,IDestroyer
+    class Player : MapElement,IPlayerCharacter
     {
         public int Lives { get; set; }
         public int Score { get; set; }

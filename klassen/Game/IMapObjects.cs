@@ -9,6 +9,5 @@ namespace Game
     interface IMapObjects
     {
         public ICoordinates Location { get; set; }
-
     }
 }

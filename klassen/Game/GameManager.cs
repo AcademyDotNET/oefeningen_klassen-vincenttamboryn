@@ -54,9 +54,9 @@ namespace Game
         }
         void PlayerMovement(int i)
         {
-            if (MapElement.allElements[i] is Player)
+            if (MapElement.allElements[i] is IPlayerCharacter)
             {
-                Player player = MapElement.allElements[i] as Player;
+                IPlayerCharacter player = MapElement.allElements[i] as IPlayerCharacter;
                 player.Move(Console.ReadKey());
                 playerScore = player.Score;
             }
@@ -85,7 +85,7 @@ namespace Game
                 Monster monster = MapElement.allElements[i] as Monster;
                 if (monster.PlayerLeft())
                 {
-                    monster.ShootPlayer();
+                    monster.Shoot();
                 }
                 else
                 {
@@ -98,7 +98,7 @@ namespace Game
             bool condition = true;
             foreach (var item in MapElement.allElements)
             {
-                if (item is Player)
+                if (item is IPlayerCharacter)
                 {
                     condition = false;
                 }
@@ -110,7 +110,7 @@ namespace Game
             bool condition = false;
             foreach (var item in MapElement.allElements)
             {
-                if (item is Player && item.Location.X >= Gameboard.BoardSize)
+                if (item is IPlayerCharacter && item.Location.X >= Gameboard.BoardSize)
                 {
                     condition = true;
                 }
