@@ -10,9 +10,18 @@ namespace PokemonTester
     {
         public static IPocketMonster Build(string classname, Object[] constructorArguments)
         {
-            var objectType = Type.GetType($"PokemonTester.{classname}");
-            IPocketMonster pocketMonster = (IPocketMonster)Activator.CreateInstance(objectType, constructorArguments);
-            return pocketMonster;
+            try
+            {
+                var objectType = Type.GetType($"PokemonTester.{classname}");
+                IPocketMonster pocketMonster = (IPocketMonster)Activator.CreateInstance(objectType, constructorArguments);
+                return pocketMonster;
+            }
+            catch (Exception e)
+            {
+                var objectType = Type.GetType($"PokemonTester.NullPocketMonster");
+                IPocketMonster nullMonster = (IPocketMonster)Activator.CreateInstance(objectType);
+                return nullMonster;
+            }
         }
     }
 }
