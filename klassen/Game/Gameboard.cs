@@ -8,26 +8,23 @@ namespace Game
 {
     class Gameboard
     {
-        public MapElement[,] board;
         public static int BoardSize { get; set; } = 20;
         public Gameboard()
         {
-            new Player();
+            MapElementFactory.Build("Player", Array.Empty<object>());
             PlaceXRocks(15);
             PlaceXMonsters(10);
             PlaceXRockDestroyers(5);
             PlaceWallsInit(20);
-            Update();
         }
         public Gameboard(int rocks, int monsters, int rockDestroyers, int boardSize = 20)
         {
             BoardSize = boardSize;
-            new Player();
+            MapElementFactory.Build("Player", Array.Empty<object>());
             PlaceXRocks(rocks, BoardSize);
             PlaceXMonsters(monsters, BoardSize);
             PlaceXRockDestroyers(rockDestroyers, BoardSize);
             PlaceWallsInit(BoardSize);
-            Update();
         }
         static void PlaceXRocks(int thisManyRocks, int boardSize = 20)
         {
@@ -36,17 +33,12 @@ namespace Game
                 Random randPlacement = new Random();
                 int randX = randPlacement.Next(1, boardSize);
                 int randY = randPlacement.Next(1, boardSize);
-                bool freeSpace = true;
-                foreach (var item in MapElement.allElements)
+
+                if (CheckForMapElements(randX, randY))
                 {
-                    if (item.Location.X == randX && item.Location.Y == randY)
-                    {
-                        freeSpace = false;
-                    }
-                }
-                if (freeSpace)
-                {
-                    new Rock(new Point(randX, randY));
+                    Object[] location = { randX, randY };
+                    Object[] point = { CoordinateFactory.Build("Point", location) };
+                    MapElementFactory.Build("Rock", point);
                 }
             }
         }
@@ -57,17 +49,12 @@ namespace Game
                 Random randPlacement = new Random();
                 int randX = randPlacement.Next(1, boardSize);
                 int randY = randPlacement.Next(1, boardSize);
-                bool freeSpace = true;
-                foreach (var item in MapElement.allElements)
+
+                if (CheckForMapElements(randX, randY))
                 {
-                    if (item.Location.X == randX && item.Location.Y == randY)
-                    {
-                        freeSpace = false;
-                    }
-                }
-                if (freeSpace)
-                {
-                    new Monster(new Point(randX, randY));
+                    Object[] location = { randX, randY };
+                    Object[] point = { CoordinateFactory.Build("Point", location) };
+                    MapElementFactory.Build("Monster", point);
                 }
             }
         }
@@ -78,19 +65,26 @@ namespace Game
                 Random randPlacement = new Random();
                 int randX = randPlacement.Next(1, boardSize);
                 int randY = randPlacement.Next(1, boardSize);
-                bool freeSpace = true;
-                foreach (var item in MapElement.allElements)
+
+                if (CheckForMapElements(randX, randY))
                 {
-                    if (item.Location.X == randX && item.Location.Y == randY)
-                    {
-                        freeSpace = false;
-                    }
-                }
-                if (freeSpace)
-                {
-                   new RockDestroyer(new Point(randX, randY));
+                    Object[] location = { randX, randY };
+                    Object[] point = { CoordinateFactory.Build("Point", location) };
+                    MapElementFactory.Build("RockDestroyer", point);
                 }
             }
+        }
+        static bool CheckForMapElements(int randX, int randY)
+        {
+            bool freeSpace = true;
+            foreach (var item in MapElement.allElements)
+            {
+                if (item.Location.X == randX && item.Location.Y == randY)
+                {
+                    freeSpace = false;
+                }
+            }
+            return freeSpace;
         }
         static void PlaceWallsInit(int boardSize)
         {
@@ -98,15 +92,28 @@ namespace Game
             {
                 if (i != 10)
                 {
-                    new Rock(new Point(0, i));
-                    new Rock(new Point(i, 0));
-                    new Rock(new Point(boardSize, i));
-                    new Rock(new Point(i, boardSize));
+                    Object[] point1 = { 0, i };
+                    Object[] point2 = { i, 0 };
+                    Object[] point3 = { boardSize, i };
+                    Object[] point4 = { i, boardSize };
+                    Object[] leftWall = { CoordinateFactory.Build("Point", point1)};
+                    Object[] upperWall = { CoordinateFactory.Build("Point", point2) };
+                    Object[] rightWall = { CoordinateFactory.Build("Point", point3) };
+                    Object[] lowerWall = { CoordinateFactory.Build("Point", point4) };
+                    MapElementFactory.Build("Rock", leftWall);
+                    MapElementFactory.Build("Rock", upperWall);
+                    MapElementFactory.Build("Rock", rightWall);
+                    MapElementFactory.Build("Rock", lowerWall);
+                    // or in 1 line: MapElementFactory.Build("Rock", new Object[] { CoordinateFactory.Build("Point", new Object[] { 0, i }) });
                 }
                 else
                 {
-                    new Rock(new Point(i, 0));
-                    new Rock(new Point(i, boardSize));
+                    Object[] upperMiddlePoint = { i, 0 };
+                    Object[] lowerMiddlePoint = { i, boardSize };
+                    Object[] upperMiddle = { CoordinateFactory.Build("Point", upperMiddlePoint) };
+                    Object[] lowerMiddle = { CoordinateFactory.Build("Point", lowerMiddlePoint) };
+                    MapElementFactory.Build("Rock", upperMiddle);
+                    MapElementFactory.Build("Rock", lowerMiddle);
                 }
             }
         }
@@ -116,16 +123,6 @@ namespace Game
             {
                 item.Draw();
             }
-        }
-        public void Update()
-        {
-            //isn't used
-
-            //board = new MapElement[BoardSize, BoardSize];
-            //foreach (var item in MapElement.allElements)
-            //{
-            //    board[item.Location.Y, item.Location.X] = item;
-            //}
         }
     }
 }

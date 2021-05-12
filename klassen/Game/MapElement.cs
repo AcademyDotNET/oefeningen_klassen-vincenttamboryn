@@ -6,26 +6,28 @@ using System.Threading.Tasks;
 
 namespace Game
 {
-    abstract class MapElement
+    abstract class MapElement:IMapObjects
     {
         public static List<MapElement> allElements = new List<MapElement>();
         protected char drawChar;
         protected ConsoleColor drawColor = ConsoleColor.White;
 
-        public Point Location { get; set; } = new Point();
+        public ICoordinates Location { get; set; }
         public MapElement()
         {
-            Location = new Point(1,1);
+            Object[] location = { 1, 1 };
+            Location = CoordinateFactory.Build("Point", location);
             drawChar = 'O';
             allElements.Add(this);
         }
         public MapElement(char toDraw)
         {
-            Location = new Point(1, 1);
+            Object[] location = { 1, 1 };
+            Location = CoordinateFactory.Build("Point", location);
             drawChar = toDraw;
             allElements.Add(this);
         }
-        public MapElement(char toDraw, Point location)
+        public MapElement(char toDraw, ICoordinates location)
         {
             drawChar = toDraw;
             Location = location;
@@ -34,16 +36,8 @@ namespace Game
         public virtual void Draw()
         {
             Console.ForegroundColor = drawColor;
-            if (Location.X != 0)
-            {
-                Console.SetCursorPosition(Location.X * 2, Location.Y);
-                Console.Write(drawChar);
-            }
-            else
-            {
-                Console.SetCursorPosition(Location.X, Location.Y);
-                Console.Write(drawChar);
-            }
+            Console.SetCursorPosition(Location.X * 2, Location.Y);
+            Console.Write(drawChar);
             Console.ForegroundColor = ConsoleColor.White;
         }
         public virtual void Die()

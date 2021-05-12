@@ -26,15 +26,7 @@ namespace Game
 
         public void MoveDown()
         {
-            bool canMove = true;
-            foreach (var item in MapElement.allElements)
-            {
-                if (this.Location.Y + 1 == item.Location.Y && this.Location.X == item.Location.X || this.Location.Y + 1 >= Gameboard.BoardSize + 1)
-                {
-                    canMove = false;
-                }
-            }
-            if (canMove)
+            if (CanMove(0,1))
             {
                 this.Location.Y += 1;
             }
@@ -42,15 +34,7 @@ namespace Game
 
         public void MoveLeft()
         {
-            bool canMove = true;
-            foreach (var item in MapElement.allElements)
-            {
-                if (Location.X - 1 == item.Location.X && this.Location.Y == item.Location.Y || Location.X - 1 < 0)
-                {
-                    canMove = false;
-                }
-            }
-            if (canMove)
+            if (CanMove(-1,0))
             {
                 Location.X -= 1;
             }
@@ -58,15 +42,7 @@ namespace Game
 
         public void MoveRight()
         {
-            bool canMove = true;
-            foreach (var item in MapElement.allElements)
-            {
-                if (this.Location.X + 1 == item.Location.X && this.Location.Y == item.Location.Y || this.Location.X + 1 >= Gameboard.BoardSize + 1)
-                {
-                    canMove = false;
-                }
-            }
-            if (canMove)
+            if (CanMove(1,0))
             {
                 this.Location.X += 1;
             }
@@ -74,18 +50,22 @@ namespace Game
 
         public void MoveUp()
         {
+            if (CanMove(0,-1))
+            {
+                this.Location.Y -= 1;
+            }
+        }
+        private bool CanMove(int x, int y)
+        {
             bool canMove = true;
             foreach (var item in MapElement.allElements)
             {
-                if (this.Location.Y - 1 == item.Location.Y && this.Location.X == item.Location.X || this.Location.Y - 1 <= 0)
+                if (this.Location.Y + y == item.Location.Y && this.Location.X + x == item.Location.X || this.Location.Y + y >= Gameboard.BoardSize + 1 || this.Location.Y + y <= 0 || this.Location.X + x >= Gameboard.BoardSize + 1 || this.Location.X + x <= 0)
                 {
                     canMove = false;
                 }
             }
-            if (canMove)
-            {
-                this.Location.Y -= 1;
-            }
+            return canMove;
         }
         public void Move(ConsoleKeyInfo input)
         {
@@ -119,44 +99,71 @@ namespace Game
         }
         public void Shoot()
         {
-            Console.SetCursorPosition(Location.X * 2 + 1, Location.Y);
-            Console.Write('-');
-            System.Threading.Thread.Sleep(50);
-            Console.SetCursorPosition(Location.X * 2 + 2, Location.Y);
+            DrawShot(1);
+            Kill(1);
+        }
+        void DrawShot(int shootHowFar)
+        {// draw the shot
+            for (int i = 1; i < shootHowFar * 2; i++)
+            {
+                Console.SetCursorPosition(Location.X * 2 + i, Location.Y);
+                Console.Write('-');
+                System.Threading.Thread.Sleep(50);
+            }
+            Console.SetCursorPosition(Location.X * 2 + shootHowFar * 2, Location.Y);
             Console.Write('+');
             System.Threading.Thread.Sleep(100);
-
+        }
+        static int IncreasePoints(Object entity)
+        {
+            if (entity is RockDestroyer)
+            {
+                return 1000;
+            }
+            else if (entity is Monster)
+            {
+                return 250;
+            }
+            else if (entity is Rock)
+            {
+                return 50;
+            }
+            return 0;
+        }
+        public void LongRangeShot()
+        {
+            if (LongRangeShotsLeft())
+            {
+                int shootHowFar = ShotLenght();
+                DrawShot(shootHowFar);
+                Kill(shootHowFar);
+            }
+        }
+        bool LongRangeShotsLeft()
+        {
+            if (LongRangeShots <= 0)
+            {
+                return false;
+            }
+            LongRangeShots--;
+            return true;
+        }
+        void Kill(int shotDistance)
+        {//kill an entity at distance shotDistance
             foreach (var item in MapElement.allElements)
             {
-                if (this.Location.X + 1 == item.Location.X && this.Location.Y == item.Location.Y)
+                if (Location.X + shotDistance == item.Location.X && Location.Y == item.Location.Y)
                 {
-                    if (item is RockDestroyer)
-                    {
-                        Score += 1000;
-                    }
-                    else if (item is Monster)
-                    {
-                        Score += 250;
-                    }
-                    else if (item is Rock)
-                    {
-                        Score += 50;
-                    }
+                    Score += IncreasePoints(item);
                     item.Die();
                     return;
                 }
             }
         }
-        public void LongRangeShot()
-        {
-            if (LongRangeShots == 0)
-            {
-                return;
-            }
-            LongRangeShots--;
+        int ShotLenght()
+        {// find out how far the shot goes
             int shootHowFar = 4;
             int tempShot = 4;
-            // find out how far the shot goes
             foreach (var item in MapElement.allElements)
             {
                 if (this.Location.X + 3 == item.Location.X && this.Location.Y == item.Location.Y)
@@ -180,37 +187,7 @@ namespace Game
             {
                 shootHowFar = 3;
             }
-            // draw the shot
-            for (int i = 1; i < shootHowFar * 2; i++)
-            {
-                Console.SetCursorPosition(Location.X * 2 + i, Location.Y);
-                Console.Write('-');
-                System.Threading.Thread.Sleep(50);
-            }
-            Console.SetCursorPosition(Location.X * 2 + shootHowFar * 2, Location.Y);
-            Console.Write('+');
-            System.Threading.Thread.Sleep(100);
-            //kill the entity
-            foreach (var item in MapElement.allElements)
-            {
-                if (this.Location.X + shootHowFar == item.Location.X && this.Location.Y == item.Location.Y)
-                {
-                    if (item is RockDestroyer)
-                    {
-                        Score += 1000;
-                    }
-                    else if (item is Monster)
-                    {
-                        Score += 250;
-                    }
-                    else if (item is Rock)
-                    {
-                        Score += 50;
-                    }
-                    item.Die();
-                    return;
-                }
-            }
+            return shootHowFar;
         }
         public override void Die()
         {
@@ -240,6 +217,20 @@ namespace Game
         }
         public override void Draw()
         {
+            DrawStats();
+            Console.ForegroundColor = drawColor;
+            Console.SetCursorPosition(Location.X * 2, Location.Y);
+            Console.Write(drawChar);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+        void DrawStats()
+        {
+            DrawLives();
+            DrawScore();
+            DrawLongShotsLeft();
+        }
+        void DrawLives()
+        {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             Console.ForegroundColor = drawColor;
             Console.SetCursorPosition(2, Gameboard.BoardSize + 2);
@@ -259,6 +250,28 @@ namespace Game
                     Console.Write("DEAD");
                     break;
             }
+        }
+        void DrawLongShotsLeft()
+        {
+            switch (LongRangeShots)
+            {
+                case 3:
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    break;
+                case 2:
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    break;
+                case 1:
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    break;
+                default:
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    break;
+            }
+            Console.Write($"\tLong-Range Shots: {LongRangeShots}");
+        }
+        void DrawScore()
+        {
             if (Score < 1000)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -276,27 +289,6 @@ namespace Game
                 Console.ForegroundColor = ConsoleColor.Green;
             }
             Console.Write($"\tSCORE: {Score}");
-            switch (LongRangeShots)
-            {
-                case 3:
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    break;
-                case 2:
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    break;
-                case 1:
-                    Console.ForegroundColor = ConsoleColor.DarkYellow;
-                    break;
-                default:
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    break;
-            }
-            Console.Write($"\tLong-Range Shots: {LongRangeShots}");
-
-            Console.ForegroundColor = drawColor;
-            Console.SetCursorPosition(Location.X * 2, Location.Y);
-            Console.Write(drawChar);
-            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }

@@ -10,24 +10,16 @@ namespace Game
     {
         public Monster() : base('M')
         { drawColor = ConsoleColor.Red; }
-        public Monster(Point location) : base('M', location)
+        public Monster(ICoordinates location) : base('M', location)
         { drawColor = ConsoleColor.Red; }
         public Monster(char toDraw) : base(toDraw)
         { drawColor = ConsoleColor.Red; }
-        public Monster(char toDraw, Point location) :base(toDraw, location)
+        public Monster(char toDraw, ICoordinates location) :base(toDraw, location)
         { drawColor = ConsoleColor.Red; }
 
         public void MoveDown()
         {
-            bool canMove = true;
-            foreach (var item in MapElement.allElements)
-            {
-                if (this.Location.Y+1 == item.Location.Y && this.Location.X == item.Location.X || this.Location.Y + 1 >= Gameboard.BoardSize + 1)
-                {
-                    canMove = false;
-                }
-            }
-            if (canMove)
+            if (CanMove(0,1))
             {
                 this.Location.Y += 1;
             }
@@ -35,15 +27,8 @@ namespace Game
 
         public void MoveLeft()
         {
-            bool canMove = true;
-            foreach (var item in MapElement.allElements)
-            {
-                if (this.Location.X - 1 == item.Location.X && this.Location.Y == item.Location.Y || this.Location.X -1 <= 0)
-                {
-                    canMove = false;
-                }
-            }
-            if (canMove)
+
+            if (CanMove(-1,0))
             {
                 this.Location.X -= 1;
             }
@@ -51,15 +36,7 @@ namespace Game
 
         public void MoveRight()
         {
-            bool canMove = true;
-            foreach (var item in MapElement.allElements)
-            {
-                if (this.Location.X + 1 == item.Location.X && this.Location.Y == item.Location.Y || this.Location.X + 1 >= Gameboard.BoardSize + 1)
-                {
-                    canMove = false;
-                }
-            }
-            if (canMove)
+            if (CanMove(1,0))
             {
                 this.Location.X += 1;
             }
@@ -67,18 +44,22 @@ namespace Game
 
         public void MoveUp()
         {
+            if (CanMove(0,-1))
+            {
+                this.Location.Y -= 1;
+            }
+        }
+        private bool CanMove(int x, int y)
+        {
             bool canMove = true;
             foreach (var item in MapElement.allElements)
             {
-                if (this.Location.Y - 1 == item.Location.Y && this.Location.X == item.Location.X || this.Location.Y - 1 <= 0)
+                if (this.Location.Y + y == item.Location.Y && this.Location.X + x == item.Location.X || this.Location.Y + y >= Gameboard.BoardSize + 1 || this.Location.Y + y <= 0 || this.Location.X + x >= Gameboard.BoardSize + 1 || this.Location.X + x <= 0)
                 {
                     canMove = false;
                 }
             }
-            if (canMove)
-            {
-                this.Location.Y -= 1;
-            }
+            return canMove;
         }
         public bool ItemLeft()
         {

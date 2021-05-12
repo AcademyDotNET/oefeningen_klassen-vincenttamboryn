@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Game
 {
-    class Point
+    class Point:ICoordinates
     {
         private int x;
         private int y;
