@@ -10,26 +10,24 @@ namespace Game
     {
         public Gameboard level;
         public int playerScore;
-        public GameManager(int rocks, int monsters,int rockDestroyers, int boardSize = 20)
+        public GameManager(int rocks, int monsters, int rockDestroyers, int boardSize = 20)
         {
             level = new Gameboard(rocks, monsters, rockDestroyers, boardSize);
         }
         public void Start()
         {
-            level.DrawGame();
+            Gameboard.DrawGame();
             do
             {
                 for (int i = 0; i < MapElement.allElements.Count; i++)
                 {
                     PlayerMovement(i);
 
-                    RockDestroyerMovement(i);
-
                     MonsterMovement(i);
                 }
 
                 Console.Clear();
-                level.DrawGame();
+                Gameboard.DrawGame();
 
             } while (!IsGameLost() && !IsGameWon());//reapeat game
 
@@ -61,29 +59,13 @@ namespace Game
                 playerScore = player.Score;
             }
         }
-        void RockDestroyerMovement(int i)
-        {//rockdestroyer movement, kills rocks or players if they are left of the rockdestroyer
-            if (MapElement.allElements[i] is RockDestroyer)
-            {
-                Random rDirection = new Random();
-                RockDestroyer destroyer = MapElement.allElements[i] as RockDestroyer;
-                if (destroyer.ItemLeft())
-                {
-                    destroyer.Shoot();
-                }
-                else
-                {
-                    destroyer.Move(rDirection.Next(0, 4));
-                }
-            }
-        }
-        void MonsterMovement(int i)
+        static void MonsterMovement(int i)
         {//monster momevent, kill the player if the player is left of the monster
-            if (MapElement.allElements[i] is Monster && !(MapElement.allElements[i] is RockDestroyer))
+            if (MapElement.allElements[i] is Monster)
             {
-                Random rDirection = new Random();
+                Random rDirection = new();
                 Monster monster = MapElement.allElements[i] as Monster;
-                if (monster.PlayerLeft())
+                if (monster.ItemLeft())
                 {
                     monster.Shoot();
                 }
@@ -117,5 +99,21 @@ namespace Game
             }
             return condition;
         }
+        //void RockDestroyerMovement(int i)
+        //{//rockdestroyer movement, kills rocks or players if they are left of the rockdestroyer
+        //    if (MapElement.allElements[i] is RockDestroyer)
+        //    {
+        //        Random rDirection = new Random();
+        //        RockDestroyer destroyer = MapElement.allElements[i] as RockDestroyer;
+        //        if (destroyer.ItemLeft())
+        //        {
+        //            destroyer.Shoot();
+        //        }
+        //        else
+        //        {
+        //            destroyer.Move(rDirection.Next(0, 4));
+        //        }
+        //    }
+        //}
     }
 }

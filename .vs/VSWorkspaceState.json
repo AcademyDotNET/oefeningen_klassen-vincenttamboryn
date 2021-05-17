@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\klassen",
-    "\\klassen\\RapportModule"
+    "\\klassen\\RapportModule",
+    "\\klassen\\Ziekenhuis"
   ],
-  "SelectedNode": "\\klassen\\klassen.sln",
+  "SelectedNode": "\\klassen\\RapportModule\\Program.cs",
   "PreviewInSolutionExplorer": false
 }

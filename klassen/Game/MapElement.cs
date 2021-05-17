@@ -8,7 +8,7 @@ namespace Game
 {
     abstract class MapElement:IMapObjects
     {
-        public static List<MapElement> allElements = new List<MapElement>();
+        public static List<MapElement> allElements = new();
         protected char drawChar;
         protected ConsoleColor drawColor = ConsoleColor.White;
 

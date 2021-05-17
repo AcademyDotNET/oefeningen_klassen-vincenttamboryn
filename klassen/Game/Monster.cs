@@ -61,18 +61,7 @@ namespace Game
             }
             return canMove;
         }
-        public bool ItemLeft()
-        {
-            foreach (var item in MapElement.allElements)
-            {
-                if (this.Location.X - 1 == item.Location.X && this.Location.Y == item.Location.Y)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-        public bool PlayerLeft()
+        public virtual bool ItemLeft()
         {
             foreach (var item in MapElement.allElements)
             {
@@ -86,7 +75,7 @@ namespace Game
             }
             return false;
         }
-        public void Shoot()
+        public virtual void Shoot()
         {
             foreach (var item in MapElement.allElements)
             {

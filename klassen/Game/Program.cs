@@ -7,7 +7,7 @@ namespace Game
     {
         static void Main(string[] args)
         {
-            GameManager firstLevel = new GameManager(30, 20, 15, 25);
+            GameManager firstLevel = new(30, 20, 15, 25);
             firstLevel.Start();
         }
     }

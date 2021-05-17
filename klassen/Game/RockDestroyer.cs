@@ -12,7 +12,7 @@ namespace Game
         { drawColor = ConsoleColor.DarkRed; }
         public RockDestroyer(Point location) : base('D', location)
         { drawColor = ConsoleColor.DarkRed; }
-        public void Shoot()
+        public override void Shoot()
         {
             foreach (var item in MapElement.allElements)
             {
@@ -22,6 +22,17 @@ namespace Game
                     return;
                 }
             }
+        }
+        public override bool ItemLeft()
+        {
+            foreach (var item in MapElement.allElements)
+            {
+                if (this.Location.X - 1 == item.Location.X && this.Location.Y == item.Location.Y)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

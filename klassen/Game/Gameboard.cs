@@ -30,7 +30,7 @@ namespace Game
         {
             for (int i = 0; i < thisManyRocks; i++)
             {
-                Random randPlacement = new Random();
+                Random randPlacement = new();
                 int randX = randPlacement.Next(1, boardSize);
                 int randY = randPlacement.Next(1, boardSize);
 
@@ -46,7 +46,7 @@ namespace Game
         {
             for (int i = 0; i < thisManyMonsters; i++)
             {
-                Random randPlacement = new Random();
+                Random randPlacement = new();
                 int randX = randPlacement.Next(1, boardSize);
                 int randY = randPlacement.Next(1, boardSize);
 
@@ -62,7 +62,7 @@ namespace Game
         {
             for (int i = 0; i < thisManyRockDestroyers; i++)
             {
-                Random randPlacement = new Random();
+                Random randPlacement = new();
                 int randX = randPlacement.Next(1, boardSize);
                 int randY = randPlacement.Next(1, boardSize);
 
@@ -96,7 +96,7 @@ namespace Game
                     Object[] point2 = { i, 0 };
                     Object[] point3 = { boardSize, i };
                     Object[] point4 = { i, boardSize };
-                    Object[] leftWall = { CoordinateFactory.Build("Point", point1)};
+                    Object[] leftWall =  { CoordinateFactory.Build("Point", point1) };
                     Object[] upperWall = { CoordinateFactory.Build("Point", point2) };
                     Object[] rightWall = { CoordinateFactory.Build("Point", point3) };
                     Object[] lowerWall = { CoordinateFactory.Build("Point", point4) };
@@ -117,7 +117,7 @@ namespace Game
                 }
             }
         }
-        public void DrawGame()
+        public static void DrawGame()
         {
             foreach (var item in MapElement.allElements)
             {
