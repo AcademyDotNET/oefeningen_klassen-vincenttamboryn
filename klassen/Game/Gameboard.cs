@@ -117,7 +117,7 @@ namespace Game
                 }
             }
         }
-        public static void DrawGame()
+        public void DrawGame()
         {
             foreach (var item in MapElement.allElements)
             {

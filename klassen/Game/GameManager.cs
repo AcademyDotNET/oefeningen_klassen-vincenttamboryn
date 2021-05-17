@@ -16,7 +16,7 @@ namespace Game
         }
         public void Start()
         {
-            Gameboard.DrawGame();
+            level.DrawGame();
             do
             {
                 for (int i = 0; i < MapElement.allElements.Count; i++)
@@ -27,16 +27,18 @@ namespace Game
                 }
 
                 Console.Clear();
-                Gameboard.DrawGame();
+                level.DrawGame();
 
             } while (!IsGameLost() && !IsGameWon());//reapeat game
 
             //how did the game end
-            Console.Clear();
+
             Ending();
         }
         void Ending()
         {
+            System.Threading.Thread.Sleep(150);
+            Console.Clear();
             if (IsGameLost())
             {
                 Console.ForegroundColor = ConsoleColor.Red;
